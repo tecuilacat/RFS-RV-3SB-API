@@ -1,6 +1,5 @@
 package api.state;
 
-//TODO Extend and comment class!
 public class RobotState {
 
     private int speed;
@@ -26,4 +25,5 @@ public class RobotState {
     public void setMoving(boolean moving) {
         isMoving = moving;
     }
+
 }

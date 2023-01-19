@@ -7,13 +7,12 @@ public class RobotStateParser implements Parser<String, RobotState> {
 
     private static final Logger logger = new Logger(RobotStateParser.class);
 
-    //TODO Find out indexes to elements
     @Override
     public RobotState parse(String robotAnswer) {
         try {
             String[] elements = robotAnswer.split(";");
             int speed = Integer.parseInt(elements[2]);
-            boolean isMoving = elements[18].charAt(0) != '0';
+            boolean isMoving = elements[18].charAt(0) != '0'; //After '0' there are several null Objects which is why only the first char is needed
             return new RobotState(
                     speed,
                     isMoving

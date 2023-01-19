@@ -38,10 +38,15 @@ public class TestProgramForF113 implements RunnableProgram {
 
             logger.info("Now testing MVS Commands");
 
+            robot.mvsToPosition(P1.alterZ(-50.0));
             robot.mvsToPosition(P1);
+            robot.mvsToPosition(P2.alterZ(-50.0));
             robot.mvsToPosition(P2);
+            robot.mvsToPosition(P3.alterZ(-50.0));
             robot.mvsToPosition(P3);
+            robot.mvsToPosition(P4.alterZ(-50.0));
             robot.mvsToPosition(P4);
+            robot.mvsToPosition(P1.alterZ(-50.0));
             robot.mvsToPosition(P1);
             robot.movToSafePosition();
 

@@ -10,14 +10,14 @@ import java.nio.charset.StandardCharsets;
 /**
  * Sends and executes commands
  */
-public class CommandExecuter {
+public class CommandExecutor {
 
-    private static final Logger logger = new Logger(CommandExecuter.class);
+    private static final Logger logger = new Logger(CommandExecutor.class);
 
     private OutputStream writer;
     private InputStream reader;
 
-    public CommandExecuter(InputStream reader, OutputStream writer) {
+    public CommandExecutor(InputStream reader, OutputStream writer) {
         this.reader = reader;
         this.writer = writer;
     }
@@ -39,7 +39,7 @@ public class CommandExecuter {
             reader.read(answer);
             res = new String(answer);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Command " + command + " could not be executed", e);
         }
         return res;
     }

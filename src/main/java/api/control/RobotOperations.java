@@ -1,6 +1,7 @@
 package api.control;
 
 import api.nav.Position;
+import api.programs.RunnableProgram;
 
 /**
  * Interface holds all operations that are possible
@@ -66,6 +67,14 @@ public interface RobotOperations {
     String movToPosition(Position position, boolean safeTravel);
 
     /**
+     * Performs a MOV-command to a new position
+     *
+     * @param position New position
+     * @return Answer of the robot
+     */
+    String movToPosition(Position position);
+
+    /**
      * Performs a MVS-command to a new position
      * @param position New position
      * @return Answer of the robot
@@ -104,5 +113,12 @@ public interface RobotOperations {
      * @return Robot is still in motion or not
      */
     boolean isMoving();
+
+    /**
+     * Runs a program
+     *
+     * @param runnableProgram Implementation of a runnable Program
+     */
+    void runProgram(RunnableProgram runnableProgram);
 
 }
