@@ -1,4 +1,4 @@
-package parser;
+package api.parser;
 
 /**
  * Parses one type to another

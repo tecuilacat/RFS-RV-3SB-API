@@ -1,4 +1,4 @@
-package commands;
+package api.commands;
 
 /**
  * Enum holds all needed commands for language MELFA Basic 4

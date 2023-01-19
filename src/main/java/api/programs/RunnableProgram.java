@@ -1,6 +1,6 @@
-package programs;
+package api.programs;
 
-import control.RobotOperations;
+import api.control.RobotOperations;
 
 /**
  * Implement a program based on a controller or robot here

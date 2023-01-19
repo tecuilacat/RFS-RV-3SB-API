@@ -1,7 +1,7 @@
-package control;
+package api.control;
 
-import logger.Logger;
-import utils.DelayManager;
+import api.logger.Logger;
+import api.utils.DelayManager;
 
 import java.io.InputStream;
 import java.io.OutputStream;

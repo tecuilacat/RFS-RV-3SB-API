@@ -1,4 +1,4 @@
-package state;
+package api.state;
 
 //TODO Extend and comment class!
 public class RobotState {

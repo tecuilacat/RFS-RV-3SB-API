@@ -1,6 +1,6 @@
-package utils;
+package api.utils;
 
-import logger.Logger;
+import api.logger.Logger;
 
 public class DelayManager {
 

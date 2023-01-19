@@ -1,7 +1,7 @@
-package control;
+package api.control;
 
-import logger.Logger;
-import nav.Position;
+import api.logger.Logger;
+import api.nav.Position;
 
 import java.util.Objects;
 

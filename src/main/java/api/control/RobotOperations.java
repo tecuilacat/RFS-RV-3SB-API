@@ -1,6 +1,6 @@
-package control;
+package api.control;
 
-import nav.Position;
+import api.nav.Position;
 
 /**
  * Interface holds all operations that are possible

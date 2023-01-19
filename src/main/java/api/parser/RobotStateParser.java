@@ -1,7 +1,7 @@
-package parser;
+package api.parser;
 
-import logger.Logger;
-import state.RobotState;
+import api.logger.Logger;
+import api.state.RobotState;
 
 public class RobotStateParser implements Parser<String, RobotState> {
 

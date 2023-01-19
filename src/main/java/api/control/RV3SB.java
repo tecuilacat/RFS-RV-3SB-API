@@ -1,12 +1,12 @@
-package control;
+package api.control;
 
-import commands.Commands;
-import logger.Logger;
-import nav.Position;
-import parser.Parser;
-import parser.RobotStateParser;
-import state.RobotState;
-import utils.DelayManager;
+import api.commands.Commands;
+import api.logger.Logger;
+import api.nav.Position;
+import api.parser.Parser;
+import api.parser.RobotStateParser;
+import api.state.RobotState;
+import api.utils.DelayManager;
 
 import java.net.Socket;
 import java.util.Objects;
