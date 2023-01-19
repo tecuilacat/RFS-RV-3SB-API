@@ -1,6 +1,5 @@
 import control.RV3SB;
 import control.RobotBuilder;
-import control.RobotOperations;
 import logger.Logger;
 import nav.Position;
 import programs.RunnableProgram;
@@ -21,16 +20,10 @@ public class Starter {
                 .enableServo()
                 .setSpeed(10)
                 .setSafePosition(SAFE_POSITION)
+                .exitOnError()
                 .build();
 
-        RunnableProgram program = new RunnableProgram() {
-            @Override
-            public void runProgram(RobotOperations robot) {
-                logger.info("Starting program P");
-                logger.debug("");
-            }
-        };
-
+        RunnableProgram program = new TestProgramForF113();
         program.runProgram(robot);
     }
 
