@@ -1,6 +1,6 @@
 package api.control;
 
-import api.commands.Commands;
+import api.commands.CommandSet;
 import api.logger.Logger;
 import api.nav.Position;
 import api.parser.Parser;
@@ -25,6 +25,7 @@ public class RV3SB implements RobotOperations {
     private CommandExecutor executor;
     private String name = "";
     private Position safePosition;
+    private CommandSet commandSet;
 
     protected RV3SB(RobotBuilder builder) {
         if (!builder.name.equals("")) this.name = builder.name;
@@ -37,6 +38,7 @@ public class RV3SB implements RobotOperations {
             if (builder.exitOnError) System.exit(-1); // -1 indicates an error
             return;
         }
+        this.commandSet = builder.commandSet;
         logger.info("Configuring Robot " + name);
         if (builder.enableCommunication) enableCommunication();
         if (builder.enableOperation) enableOperation();
@@ -53,25 +55,25 @@ public class RV3SB implements RobotOperations {
     @Override
     public String enableCommunication() {
         logger.info("Enabling communication");
-        return executor.execute(Commands.ENABLE_COMMUNICATION.getCommand());
+        return executor.execute(commandSet.getEnableCommunicationCommand());
     }
 
     @Override
     public String disableCommunication() {
         logger.info("Disabling communication");
-        return executor.execute(Commands.DISABLE_COMMUNICATION.getCommand());
+        return executor.execute(commandSet.getDisableCommunicationCommand());
     }
 
     @Override
     public String enableOperation() {
         logger.info("Enabling operation");
-        return executor.execute(Commands.ENABLE_OPERATION.getCommand());
+        return executor.execute(commandSet.getEnableOperationCommand());
     }
 
     @Override
     public String enableServo() {
         logger.robotAction("Enabling servo");
-        String res = executor.execute(Commands.SERVO_ON.getCommand());
+        String res = executor.execute(commandSet.getServoOnCommand());
         DelayManager.defaultTimeout();
         return res;
     }
@@ -79,7 +81,7 @@ public class RV3SB implements RobotOperations {
     @Override
     public String disableServo() {
         logger.robotAction("Disabling servo");
-        String res = executor.execute(Commands.SERVO_OFF.getCommand());
+        String res = executor.execute(commandSet.getServoOffCommand());
         DelayManager.defaultTimeout();
         return res;
     }
@@ -87,20 +89,20 @@ public class RV3SB implements RobotOperations {
     @Override
     public String setSpeed(int speed) {
         logger.robotAction("Setting speed to " + speed);
-        String res = executor.execute(Commands.SET_SPEED.getCommand() + speed);
+        String res = executor.execute(commandSet.getSetSpeedCommand() + speed);
         DelayManager.defaultTimeout();
         return res;
     }
 
     @Override
     public Position getCurrentPosition() {
-        String currentPositionAsString = executor.execute(Commands.GET_CURRENT_POSITION.getCommand()).substring(3); //Charactes before that are unneccessary
+        String currentPositionAsString = executor.execute(commandSet.getCurrentPositionCommand()).substring(3); //Charactes before that are unneccessary
         return new PositionParser().parse(currentPositionAsString);
     }
 
     @Override
     public String getState() {
-        return executor.execute(Commands.STATE.getCommand());
+        return executor.execute(commandSet.getStateCommand());
     }
 
     @Override
@@ -109,11 +111,11 @@ public class RV3SB implements RobotOperations {
         logger.robotAction("Moving");
         String res;
         if (withSafeTravel) { //moves to the safe z index first
-            res = executor.execute(Commands.MOV.getCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position.alterZ(-50))); //MOV Psomething -50
+            res = executor.execute(commandSet.getMOVCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position.alterZ(-50))); //MOV Psomething -50
             waitForMovementToBeCompleted();
-            res += executor.execute(Commands.MVS.getCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position)); //MOV Psomething
+            res += executor.execute(commandSet.getMVSCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position)); //MOV Psomething
         } else {
-            res = executor.execute(Commands.MOV.getCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position)); //MOV Psomething
+            res = executor.execute(commandSet.getMOVCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position)); //MOV Psomething
         }
         waitForMovementToBeCompleted();
         return res;
@@ -123,7 +125,7 @@ public class RV3SB implements RobotOperations {
     public String movToPosition(Position position) {
         logger.debug("Moving to position " + position + " via MOV");
         logger.robotAction("Moving");
-        String res = executor.execute(Commands.MOV.getCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position));
+        String res = executor.execute(commandSet.getMOVCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position));
         waitForMovementToBeCompleted();
         return res;
     }
@@ -132,7 +134,7 @@ public class RV3SB implements RobotOperations {
     public String mvsToPosition(Position position) {
         logger.debug("Moving to position " + position + " via MVS");
         logger.robotAction("Moving");
-        String res = executor.execute(Commands.MVS.getCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position)); //MVS Psomething
+        String res = executor.execute(commandSet.getMVSCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position)); //MVS Psomething
         waitForMovementToBeCompleted();
         return res;
     }
@@ -181,15 +183,20 @@ public class RV3SB implements RobotOperations {
     @Override
     public void grab() {
         logger.robotAction("Grabbing");
-        executor.execute(Commands.GRAB.getCommand());
+        executor.execute(commandSet.getGrabCommand());
         DelayManager.defaultTimeout();
     }
 
     @Override
     public void drop() {
         logger.robotAction("Dropping");
-        executor.execute(Commands.DROP.getCommand());
+        executor.execute(commandSet.getDropCommand());
         DelayManager.defaultTimeout();
+    }
+
+    @Override
+    public void runProgram(RunnableProgram runnableProgram) {
+        runnableProgram.runProgram(this);
     }
 
     /**
@@ -200,11 +207,6 @@ public class RV3SB implements RobotOperations {
         while (isMoving()) {
             DelayManager.defaultTimeout();
         }
-    }
-
-    @Override
-    public void runProgram(RunnableProgram runnableProgram) {
-        runnableProgram.runProgram(this);
     }
 
 }

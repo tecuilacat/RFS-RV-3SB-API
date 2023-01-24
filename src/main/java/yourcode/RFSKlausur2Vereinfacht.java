@@ -11,10 +11,10 @@ public class RFSKlausur2Vereinfacht implements RunnableProgram {
 
     //Punkte
     private final Position PSTART = new Position(420.0, 0.0, 300.0, 180, 0, 180);
-    private final Position P5 = new Position(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-    private final Position P11 = new Position(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-    private Position PAUF = new Position(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-    private Position PAB = new Position(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+    private final Position P5 = new Position(420.0, 0.0, 135.0, 180.0, 0.0, 180.0);
+    private final Position P11 = new Position(33.81, -495.72, 130.15, 180.0,0.0,180.0);
+    private Position PAUF = new Position(0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //wird später initialisiert
+    private Position PAB = new Position(0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //wird später initialisiert
 
     //Unterprogramme
     private final RunnableProgram START = new SubSTART();

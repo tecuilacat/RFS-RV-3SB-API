@@ -7,6 +7,8 @@ Usable API for RV-3SB in room F113
 To init the Robot you must use a `RobotBuilder` which you must initialize with a host, and a port. As of 2023 the host is `192.168.1.223` and the port `10001`.  
 Init the robot with `RV3SB robot = new RobotBuilder(HOST, PORT). [...] .build();`  
 The [...] stands for more actions that you can / have to add to the init process like `.setSafePosition([...])` or `.setSpeed([...])`.  
+Also do not forget to define a `CommandSet` which tells the robot which commands to use. If this API does not include the fitting commands, implement a new class 
+and implement the `CommandSet` interface.
 
 ## Usage of programs
 The interface `RunnableProgram` allows you to use the `RV-3SB` itself to run programs.  

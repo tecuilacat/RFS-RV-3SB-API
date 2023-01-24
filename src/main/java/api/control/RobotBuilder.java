@@ -1,5 +1,7 @@
 package api.control;
 
+import api.commands.CommandSet;
+import api.commands.MelfaBasic4CommandSet;
 import api.logger.Logger;
 import api.nav.Position;
 
@@ -22,6 +24,7 @@ public class RobotBuilder {
     protected Position safePosition = null;
     protected String name = "robot";
     protected boolean exitOnError = false;
+    protected CommandSet commandSet = null;
 
     private boolean disableSecureStartup = false;
 
@@ -37,11 +40,15 @@ public class RobotBuilder {
 
     /**
      * Builds the connection to the robot and initializes dedicated variables / operations
-     * @return Robot ready to work with
+     * @return Robot ready with the configured attributes
      */
     public RV3SB build() {
         if (Objects.isNull(safePosition) && !disableSecureStartup) {
             logger.error("You must define a safe position for your robot!");
+            return null;
+        }
+        if (Objects.isNull(commandSet)) {
+            logger.error("You must define a command set for the robot");
             return null;
         }
         try {
@@ -50,6 +57,24 @@ public class RobotBuilder {
             logger.error("Robot could not be initialized", e);
         }
         return null;
+    }
+
+    /**
+     * Builds a robot with the preconfigured attributes: enableOperation, enableCommunication, enableServo, exitOnError, setSpeed = 10,
+     * @param safePosition Safe position of the robot (can be null if not configure [not recommended])
+     * @return Robot ready to work
+     */
+    public RV3SB buildPreConfig(Position safePosition) {
+        this.setSafePosition(safePosition);
+        this.enableOperation();
+        this.enableCommunication();
+        this.enableServo();
+        this.exitOnError();
+        this.commandSet = MelfaBasic4CommandSet.getCommandSet();
+        if (Objects.isNull(safePosition)) {
+            this.disableSecureStartup();
+        }
+        return build();
     }
 
     /**
@@ -130,6 +155,16 @@ public class RobotBuilder {
      */
     public RobotBuilder exitOnError() {
         this.exitOnError = true;
+        return this;
+    }
+
+    /**
+     * Commandset for the robot
+     * @param commandSet For example 'MelfaBasic4CommandSet'
+     * @return Instance of RobotBuilder
+     */
+    public RobotBuilder setCommandSet(CommandSet commandSet) {
+        this.commandSet = commandSet;
         return this;
     }
 
