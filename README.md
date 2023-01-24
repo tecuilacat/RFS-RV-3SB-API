@@ -6,7 +6,7 @@ Usable API for RV-3SB in room F113
 - Easy init of a robot
 - Fast and easy way to move the robot to positions
 - Full control of the robot
-- 
+- Easy way to write programs and nested subprograms / -routines
 
 ## USAGE
 ### Init the robot
@@ -47,4 +47,4 @@ The API will initialize the robot accordingly to your definitions of the Builder
 In order for you to get more information about what´s really happening behind the scenes, run debug mode in IntelliJ
 and get access to more detailed logs.
 
-**_&copy; Oliver Steck (01 | 2023)_** 
+**_&copy; Oliver Steck (01 | 2023)_**
