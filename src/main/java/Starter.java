@@ -2,7 +2,7 @@ import api.commands.MelfaBasic4CommandSet;
 import api.control.RV3SB;
 import api.control.RobotBuilder;
 import api.nav.Position;
-import yourcode.RFSKlausur2Vereinfacht;
+import yourprograms.RFSKlausur2Vereinfacht;
 
 public class Starter {
 

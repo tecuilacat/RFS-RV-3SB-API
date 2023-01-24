@@ -1,4 +1,4 @@
-package yourcode;
+package yourprograms;
 
 import api.control.RobotOperations;
 import api.nav.Position;
@@ -84,7 +84,7 @@ public class RFSKlausur2Ausfuehrlich implements RunnableProgram {
         @Override
         public void runProgram(RobotOperations robot) {
             robot.movToPosition(PAB.alterZ(-50));
-            robot.mvsToPosition(PAB);;
+            robot.mvsToPosition(PAB);
             robot.drop();
             robot.mvsToPosition(PAB.alterZ(-50));
             PAB.setZ(PAB.getZ() + 3.0);

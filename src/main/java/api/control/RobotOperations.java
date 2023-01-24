@@ -34,7 +34,7 @@ public interface RobotOperations {
 
     /**
      * Turns the servo of the robot off
-     * @returnAnswer of the robot
+     * @return Answer of the robot
      */
     String disableServo();
 
@@ -61,10 +61,9 @@ public interface RobotOperations {
      * Performs a MOV-command to a new position
      * * First it performs a mov-command to the point with point.z = point.z+50 and then a mvs command to the actual point
      * @param position New position
-     * @param safeTravel True if you want *
      * @return Answer of the robot
      */
-    String movToPosition(Position position, boolean safeTravel);
+    String movToPositionWithSafeTravel(Position position);
 
     /**
      * Performs a MOV-command to a new position
@@ -120,5 +119,11 @@ public interface RobotOperations {
      * @param runnableProgram Implementation of a runnable Program
      */
     void runProgram(RunnableProgram runnableProgram);
+
+    /**
+     * Interrupts the robot thread for a certain duration
+     * @param seconds Duration in seconds
+     */
+    void delay(double seconds);
 
 }

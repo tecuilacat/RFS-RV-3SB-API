@@ -1,4 +1,4 @@
-package yourcode;
+package yourprograms;
 
 import api.control.RobotOperations;
 import api.logger.Logger;
@@ -20,20 +20,20 @@ public class TestProgramForF113 implements RunnableProgram {
             logger.info("Starting program");
             logger.info("Testing MOV commands WITHOUT safe travel");
 
-            robot.movToPosition(P1, false);
-            robot.movToPosition(P2, false);
-            robot.movToPosition(P3, false);
-            robot.movToPosition(P4, false);
-            robot.movToPosition(P1, false);
+            robot.movToPositionWithSafeTravel(P1);
+            robot.movToPositionWithSafeTravel(P2);
+            robot.movToPositionWithSafeTravel(P3);
+            robot.movToPositionWithSafeTravel(P4);
+            robot.movToPositionWithSafeTravel(P1);
             robot.movToSafePosition();
 
             logger.info("Testing MOV commands WITH safe travel");
 
-            robot.movToPosition(P1, true);
-            robot.movToPosition(P2, true);
-            robot.movToPosition(P3, true);
-            robot.movToPosition(P4, true);
-            robot.movToPosition(P1, true);
+            robot.movToPositionWithSafeTravel(P1);
+            robot.movToPositionWithSafeTravel(P2);
+            robot.movToPositionWithSafeTravel(P3);
+            robot.movToPositionWithSafeTravel(P4);
+            robot.movToPositionWithSafeTravel(P1);
             robot.movToSafePosition();
 
             logger.info("Now testing MVS Commands");

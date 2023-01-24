@@ -25,7 +25,6 @@ public class CommandExecutor {
     /**
      * Used for all commands except for those that move the robot
      *
-     * @author Former RFS-group from a couple of years | NOT me
      * @param command Command the robot has to execute
      * @return Answer of the robot
      */

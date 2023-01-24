@@ -2,6 +2,12 @@
 Usable API for RV-3SB in room F113
 #### YOU DO NOT HAVE TO CHANGE THE JAVA CLASSES IN PACKAGES!
 
+## FEATURES
+- Easy init of a robot
+- Fast and easy way to move the robot to positions
+- Full control of the robot
+- 
+
 ## USAGE
 ### Init the robot
 To init the Robot you must use a `RobotBuilder` which you must initialize with a host, and a port. As of 2023 the host is `192.168.1.223` and the port `10001`.  

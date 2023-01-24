@@ -28,11 +28,11 @@ public class DelayManager {
 
     /**
      * Performs a timout for the time in milliseconds
-     * @param timeout Milliseconds of timout
+     * @param timeout Milliseconds of timout in seconds
      */
-    public static void defaultTimeout(int timeout) {
+    public static void defaultTimeout(double timeout) {
         try {
-            Thread.sleep(timeout);
+            Thread.sleep((long) timeout * 1000L);
         } catch (Exception e) {
             logger.error("Timeout konnte nicht ausgeführt werden", e);
         }

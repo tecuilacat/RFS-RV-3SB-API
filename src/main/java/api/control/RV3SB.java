@@ -23,7 +23,7 @@ public class RV3SB implements RobotOperations {
 
     private Socket socket;
     private CommandExecutor executor;
-    private String name = "";
+    private String name = ""; //Wird später noch genutzt
     private Position safePosition;
     private CommandSet commandSet;
 
@@ -106,17 +106,12 @@ public class RV3SB implements RobotOperations {
     }
 
     @Override
-    public String movToPosition(Position position, boolean withSafeTravel) {
+    public String movToPositionWithSafeTravel(Position position) {
         logger.debug("Moving to position " + position + " via MOV");
         logger.robotAction("Moving");
-        String res;
-        if (withSafeTravel) { //moves to the safe z index first
-            res = executor.execute(commandSet.getMOVCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position.alterZ(-50))); //MOV Psomething -50
-            waitForMovementToBeCompleted();
-            res += executor.execute(commandSet.getMVSCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position)); //MOV Psomething
-        } else {
-            res = executor.execute(commandSet.getMOVCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position)); //MOV Psomething
-        }
+        String res = executor.execute(commandSet.getMOVCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position.alterZ(-50))); //MOV Psomething -50
+        waitForMovementToBeCompleted();
+        res += executor.execute(commandSet.getMVSCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position)); //MOV Psomething
         waitForMovementToBeCompleted();
         return res;
     }
@@ -149,7 +144,7 @@ public class RV3SB implements RobotOperations {
                 res = mvsToPosition(currentPosition.alterAbsoluteZ(safePosition.getZ()));
                 waitForMovementToBeCompleted();
             }
-            res += movToPosition(safePosition, false);
+            res += movToPositionWithSafeTravel(safePosition);
             waitForMovementToBeCompleted();
         } else {
             logger.error("Keine SafePosition angegeben!");
@@ -209,4 +204,8 @@ public class RV3SB implements RobotOperations {
         }
     }
 
+    @Override
+    public void delay(double seconds) {
+        DelayManager.defaultTimeout(seconds);
+    }
 }

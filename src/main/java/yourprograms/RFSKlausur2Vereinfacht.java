@@ -1,4 +1,4 @@
-package yourcode;
+package yourprograms;
 
 import api.control.RobotOperations;
 import api.nav.Position;
@@ -65,7 +65,7 @@ public class RFSKlausur2Vereinfacht implements RunnableProgram {
     private class SubHOLEN implements RunnableProgram {
         @Override
         public void runProgram(RobotOperations robot) {
-            robot.movToPosition(PAUF, true);
+            robot.movToPositionWithSafeTravel(PAUF);
             robot.grab();
             robot.mvsToPosition(PAUF.alterZ(-50));
             PAUF.setZ(PAUF.getZ() - 3.0);
@@ -78,7 +78,7 @@ public class RFSKlausur2Vereinfacht implements RunnableProgram {
     private class SubABLAGE implements RunnableProgram {
         @Override
         public void runProgram(RobotOperations robot) {
-            robot.movToPosition(PAB, true);
+            robot.movToPositionWithSafeTravel(PAB);
             robot.drop();
             robot.mvsToPosition(PAB.alterZ(-50));
             PAB.setZ(PAB.getZ() + 3.0);
