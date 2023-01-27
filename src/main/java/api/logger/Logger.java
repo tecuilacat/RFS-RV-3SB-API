@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Logger {
 
-    private static boolean ONLY_SHOW_COMMANDS = false;
+    private static boolean ONLY_SHOW_COMMANDS;
     private static final boolean IS_IN_DEBUG_MODE = java.lang.management.ManagementFactory.getRuntimeMXBean()
             .getInputArguments()
             .toString()
@@ -23,11 +23,15 @@ public class Logger {
     }
 
     public void info(String message) {
-        if (!ONLY_SHOW_COMMANDS) System.out.println(ANSI_BLUE + getDateTime() + " --- " + name + "\t\t\t: " + message + ANSI_RESET);
+        if (!ONLY_SHOW_COMMANDS) {
+            System.out.println(ANSI_BLUE + getDateTime() + " --- " + name + "\t\t\t: " + message + ANSI_RESET);
+        }
     }
 
     public void command(String command) {
-        if (ONLY_SHOW_COMMANDS || IS_IN_DEBUG_MODE) System.out.println(ANSI_BLUE + getDateTime() + " --- " + name + "\t\t\t: " + command + ANSI_RESET);
+        if (ONLY_SHOW_COMMANDS || IS_IN_DEBUG_MODE) {
+            System.out.println(ANSI_BLUE + getDateTime() + " --- " + name + "\t\t\t: " + command + ANSI_RESET);
+        }
     }
 
     public void debug(String message) {
@@ -41,7 +45,9 @@ public class Logger {
     }
 
     public void error(String message) {
-        if (!ONLY_SHOW_COMMANDS) System.out.println(ANSI_RED + getDateTime() + " --- " + name + "\t\t\t: " + message + ANSI_RESET);
+        if (!ONLY_SHOW_COMMANDS) {
+            System.out.println(ANSI_RED + getDateTime() + " --- " + name + "\t\t\t: " + message + ANSI_RESET);
+        }
     }
 
     public void error(String message, Throwable e) {
@@ -58,7 +64,9 @@ public class Logger {
      * Only works in debug
      */
     public static void onlyShowCommandsAndDebug() {
-        if (IS_IN_DEBUG_MODE) ONLY_SHOW_COMMANDS = true;
+        if (IS_IN_DEBUG_MODE) {
+            ONLY_SHOW_COMMANDS = true;
+        }
     }
 
 }

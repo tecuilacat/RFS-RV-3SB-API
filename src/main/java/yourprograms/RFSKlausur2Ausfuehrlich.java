@@ -26,10 +26,11 @@ public class RFSKlausur2Ausfuehrlich implements RunnableProgram {
      */
     @Override
     public void runProgram(RobotOperations robot) {
+        robot.setSafePosition(PSTART);
         robot.enableServo();
         PAUF = P11.copy();
         PAB = P5.copy();
-        PAUF.setZ(PAUF.getZ() + 27.0); //9x3
+        PAUF.setZ(PAUF.getZ() + 27.0); //9x3 (Ja, Lukas. Eigentlich 16, aber...nur so ein Gefühl)
 
         robot.runProgram(START);
 
