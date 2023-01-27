@@ -12,25 +12,23 @@ public class DetectShapesAndSort implements RunnableProgram {
     /**
      * Wird in der Form vom python script mit Bilderkennung generiert
      */
-    private class ShapeToSort {
-
+    private static class ShapeToSort {
         private Position from;
         private Position to;
-
         public Position getFrom() {
             return from;
         }
-
         public Position getTo() {
             return to;
         }
-
     }
 
     private List<ShapeToSort> shapes;
 
     @Override
     public void runProgram(RobotOperations robot) {
+        fillShapesToSort();
+
         robot.movToSafePosition();
 
         for (ShapeToSort shape: shapes) {

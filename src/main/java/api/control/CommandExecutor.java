@@ -17,9 +17,13 @@ public class CommandExecutor {
     private OutputStream writer;
     private InputStream reader;
 
-    public CommandExecutor(InputStream reader, OutputStream writer) {
+    private CommandExecutor(InputStream reader, OutputStream writer) {
         this.reader = reader;
         this.writer = writer;
+    }
+
+    public static CommandExecutor getFromSocket(InputStream reader, OutputStream writer) {
+        return new CommandExecutor(reader, writer);
     }
 
     /**

@@ -23,7 +23,7 @@ public class Starter {
                 .setCommandSet(MelfaBasic4CommandSet.getCommandSet())
                 .build();
 
-        // Alternative way
+        // Alternative but boring way:
         // robot = new RobotBuilder(HOST, PORT).buildPreConfig(SAFE_POSITION);
 
         robot.runProgram(new RFSKlausur2Vereinfacht());

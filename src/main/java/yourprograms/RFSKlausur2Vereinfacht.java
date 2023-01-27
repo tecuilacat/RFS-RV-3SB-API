@@ -13,13 +13,13 @@ public class RFSKlausur2Vereinfacht implements RunnableProgram {
     private final Position PSTART = new Position(420.0, 0.0, 300.0, 180, 0, 180);
     private final Position P5 = new Position(420.0, 0.0, 135.0, 180.0, 0.0, 180.0);
     private final Position P11 = new Position(33.81, -495.72, 130.15, 180.0,0.0,180.0);
-    private Position PAUF = new Position(0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //wird später initialisiert
-    private Position PAB = new Position(0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //wird später initialisiert
+    private Position PAUF; //wird später initialisiert
+    private Position PAB;  //wird später initialisiert
 
     //Unterprogramme
-    private final RunnableProgram START = new SubSTART();
-    private final RunnableProgram HOLEN = new SubHOLEN();
-    private final RunnableProgram ABLAGE = new SubABLAGE();
+    private final RunnableProgram START = new START();
+    private final RunnableProgram HOLEN = new HOLEN();
+    private final RunnableProgram ABLAGE = new ABLAGE();
 
     /**
      * Hauptprogramm
@@ -27,7 +27,6 @@ public class RFSKlausur2Vereinfacht implements RunnableProgram {
     @Override
     public void runProgram(RobotOperations robot) {
         robot.setSafePosition(PSTART);
-
         robot.enableServo();
         PAUF = P11.copy();
         PAB = P5.copy();
@@ -35,12 +34,12 @@ public class RFSKlausur2Vereinfacht implements RunnableProgram {
 
         robot.runProgram(START);
 
-        for (int i = 1; i <= 7; i++) {
+        for (int i = 1; i <= 7; i++) {  //oder i = 0; 0 < 7 (äquivalent, aber zum besseren Verständnis)
             robot.runProgram(HOLEN);
             robot.runProgram(ABLAGE);
         }
 
-        for (int i = 8; i <= 10; i++) {
+        for (int i = 8; i <= 10; i++) { //oder i = 0; 0 < 3 (äquivalent, aber zum besseren Verständnis)
             robot.runProgram(HOLEN);
             PAB.setC(PAB.getC() + 45.0);
             robot.runProgram(ABLAGE);
@@ -52,7 +51,7 @@ public class RFSKlausur2Vereinfacht implements RunnableProgram {
     /**
      * Unteraufgabe a)
      */
-    private class SubSTART implements RunnableProgram {
+    private class START implements RunnableProgram {
         @Override
         public void runProgram(RobotOperations robot) {
             robot.movToSafePosition();
@@ -62,7 +61,7 @@ public class RFSKlausur2Vereinfacht implements RunnableProgram {
     /**
      * Unteraufgabe b)
      */
-    private class SubHOLEN implements RunnableProgram {
+    private class HOLEN implements RunnableProgram {
         @Override
         public void runProgram(RobotOperations robot) {
             robot.movToPositionWithSafeTravel(PAUF);
@@ -75,7 +74,7 @@ public class RFSKlausur2Vereinfacht implements RunnableProgram {
     /**
      * Unteraufgabe c)
      */
-    private class SubABLAGE implements RunnableProgram {
+    private class ABLAGE implements RunnableProgram {
         @Override
         public void runProgram(RobotOperations robot) {
             robot.movToPositionWithSafeTravel(PAB);

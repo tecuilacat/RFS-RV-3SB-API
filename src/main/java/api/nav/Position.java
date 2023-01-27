@@ -19,24 +19,24 @@ public class Position {
      * @return New Position with the same parameters
      */
     public Position copy() {
-        return new Position(x,y,z,a,b,c);
+        return new Position(x, y, z, a, b, c);
     }
 
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("##0.00");
         return "(" +
-                convertValue(x, df) +
+                    convertValue(x, df) +
                 "," +
-                convertValue(y, df) +
+                    convertValue(y, df) +
                 "," +
-                convertValue(z, df) +
+                    convertValue(z, df) +
                 "," +
-                convertValue(a, df) +
+                    convertValue(a, df) +
                 "," +
-                convertValue(b, df) +
+                    convertValue(b, df) +
                 "," +
-                convertValue(c, df) +
+                    convertValue(c, df) +
                 ")";
     }
 

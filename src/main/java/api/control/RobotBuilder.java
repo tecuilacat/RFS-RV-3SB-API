@@ -15,16 +15,16 @@ public class RobotBuilder {
 
     private static final Logger logger = new Logger(RobotBuilder.class);
 
-    protected final String ipAddress;
-    protected final int port;
-    protected boolean enableCommunication = false;
-    protected boolean enableOperation = false;
-    protected boolean enableServo = false;
-    protected int speed = 10;
-    protected Position safePosition = null;
-    protected String name = "robot";
-    protected boolean exitOnError = false;
-    protected CommandSet commandSet = null;
+    final String ipAddress;
+    final int port;
+    boolean enableCommunication;
+    boolean enableOperation;
+    boolean enableServo;
+    boolean exitOnError;
+    int speed = 10;
+    Position safePosition;
+    String name = "robot";
+    CommandSet commandSet;
 
     private boolean disableSecureStartup = false;
 
@@ -60,7 +60,7 @@ public class RobotBuilder {
     }
 
     /**
-     * Builds a robot with the preconfigured attributes: enableOperation, enableCommunication, enableServo, exitOnError, setSpeed = 10,
+     * Builds a robot with the preconfigured attributes: enableOperation, enableCommunication, enableServo, exitOnError, setSpeed = 10
      * @param safePosition Safe position of the robot (can be null if not configure [not recommended])
      * @return Robot ready to work
      */

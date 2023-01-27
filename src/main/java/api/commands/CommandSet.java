@@ -33,6 +33,7 @@ public interface CommandSet {
     /**
      * @return Command to disable the operation on the robot
      */
+    @Deprecated
     String getDisableOperationCommand();
 
     /**

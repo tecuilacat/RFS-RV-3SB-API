@@ -19,30 +19,33 @@ import java.util.Objects;
 public class RV3SB implements RobotOperations {
 
     private static final Logger logger = new Logger(RV3SB.class);
-    private static final double SAFE_Z = 300.0;
 
     private Socket socket;
     private CommandExecutor executor;
-    private String name = ""; //Wird später noch genutzt
+    private String name = ""; //TODO ? | OS | 27.01.2023 | Wird später (vielleicht) noch genutzt
     private Position safePosition;
     private CommandSet commandSet;
 
-    protected RV3SB(RobotBuilder builder) {
-        if (!builder.name.equals("")) this.name = builder.name;
+    RV3SB(RobotBuilder builder) {
+        if (!builder.name.equals("")) {
+            this.name = builder.name;
+        }
         logger.info("Creating new connection for " + name);
         try {
             socket = new Socket(builder.ipAddress, builder.port);
-            executor = new CommandExecutor(socket.getInputStream(), socket.getOutputStream());
+            executor = CommandExecutor.getFromSocket(socket.getInputStream(), socket.getOutputStream());
         } catch (Exception e) {
             logger.error("Connection could not be invoked", e);
-            if (builder.exitOnError) System.exit(-1); // -1 indicates an error
+            if (builder.exitOnError) {
+                System.exit(-1); // -1 indicates an error
+            }
             return;
         }
         this.commandSet = builder.commandSet;
         logger.info("Configuring Robot " + name);
-        if (builder.enableCommunication) enableCommunication();
-        if (builder.enableOperation) enableOperation();
-        if (builder.enableServo) enableServo();
+        if (builder.enableCommunication) {enableCommunication();}
+        if (builder.enableOperation) {enableOperation();}
+        if (builder.enableServo) {enableServo();}
         setSpeed(builder.speed);
 
         if (Objects.nonNull(builder.safePosition)) {
@@ -208,4 +211,5 @@ public class RV3SB implements RobotOperations {
     public void delay(double seconds) {
         DelayManager.defaultTimeout(seconds);
     }
+
 }
