@@ -4,6 +4,7 @@ import api.control.RobotOperations;
 import api.logger.Logger;
 import api.nav.Position;
 import api.programs.RunnableProgram;
+import api.utils.DelayManager;
 
 public class TestProgramForF113 implements RunnableProgram {
 
@@ -27,6 +28,8 @@ public class TestProgramForF113 implements RunnableProgram {
             robot.movToPositionWithSafeTravel(P1);
             robot.movToSafePosition();
 
+            DelayManager.sleep(3);
+
             logger.info("Testing MOV commands WITH safe travel");
 
             robot.movToPositionWithSafeTravel(P1);
@@ -35,6 +38,8 @@ public class TestProgramForF113 implements RunnableProgram {
             robot.movToPositionWithSafeTravel(P4);
             robot.movToPositionWithSafeTravel(P1);
             robot.movToSafePosition();
+
+            DelayManager.sleep(3);
 
             logger.info("Now testing MVS Commands");
 
@@ -48,6 +53,15 @@ public class TestProgramForF113 implements RunnableProgram {
             robot.mvsToPosition(P4);
             robot.mvsToPosition(P1.alterZ(-50.0));
             robot.mvsToPosition(P1);
+
+            robot.grab();
+            DelayManager.sleep(3);
+            robot.drop();
+
+            logger.info("Testing done");
+
+            DelayManager.sleep(3);
+
             robot.movToSafePosition();
 
         } catch (Exception e) {

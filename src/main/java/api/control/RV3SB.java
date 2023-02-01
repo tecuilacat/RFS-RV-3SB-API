@@ -141,7 +141,7 @@ public class RV3SB implements RobotOperations {
     public String movToSafePosition() {
         String res = "Keine SafePosition angegeben";
         if (Objects.nonNull(safePosition)) {
-            logger.robotAction("Moving to save Position");
+            logger.robotAction("Moving to safe Position");
             Position currentPosition = getCurrentPosition();
             if (currentPosition.getZ() != safePosition.getZ()) {
                 res = mvsToPosition(currentPosition.alterAbsoluteZ(safePosition.getZ()));
@@ -209,7 +209,7 @@ public class RV3SB implements RobotOperations {
 
     @Override
     public void delay(double seconds) {
-        DelayManager.defaultTimeout(seconds);
+        DelayManager.sleep(seconds);
     }
 
 }

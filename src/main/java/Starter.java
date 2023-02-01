@@ -3,6 +3,7 @@ import api.control.RV3SB;
 import api.control.RobotBuilder;
 import api.nav.Position;
 import yourprograms.RFSKlausur2Vereinfacht;
+import yourprograms.TestProgramForF113;
 
 public class Starter {
 
@@ -26,7 +27,7 @@ public class Starter {
         // Alternative but boring way:
         // robot = new RobotBuilder(HOST, PORT).buildPreConfig(SAFE_POSITION);
 
-        robot.runProgram(new RFSKlausur2Vereinfacht());
+        robot.runProgram(new TestProgramForF113());
     }
 
 }

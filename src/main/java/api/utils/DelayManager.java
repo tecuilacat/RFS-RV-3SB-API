@@ -30,7 +30,7 @@ public class DelayManager {
      * Performs a timout for the time in milliseconds
      * @param timeout Milliseconds of timout in seconds
      */
-    public static void defaultTimeout(double timeout) {
+    public static void sleep(double timeout) {
         try {
             Thread.sleep((long) timeout * 1000L);
         } catch (Exception e) {
