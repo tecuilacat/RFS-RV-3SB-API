@@ -20,68 +20,68 @@ public class MelfaBasic4CommandSet implements CommandSet {
 
     @Override
     public String getServoOnCommand() {
-        return "SRVON";
+        return "1;1;SRVON";
     }
 
     @Override
     public String getServoOffCommand() {
-        return "SRVOFF";
+        return "1;1;SRVOFF";
     }
 
     @Override
     public String getEnableCommunicationCommand() {
-        return "OPEN=NARCUSR";
+        return "1;1;OPEN=NARCUSR";
     }
 
     @Override
     public String getDisableCommunicationCommand() {
-        return "CLOSE";
+        return "1;1;CLOSE";
     }
 
     @Override
     public String getEnableOperationCommand() {
-        return "CNTLON";
+        return "1;1;CNTLON";
     }
 
     @Deprecated
     @Override
     public String getDisableOperationCommand() {
-        return "CNTLOFF";
+        return "1;1;CNTLOFF";
     }
 
     @Override
     public String getSetSpeedCommand() {
-        return "OVRD=";
+        return "1;1;OVRD=";
     }
 
     @Override
     public String getMOVCommand() {
-        return "EXECMOV P_CURR+";
+        return "1;1;EXECMOV P_CURR+";
     }
 
     @Override
     public String getMVSCommand() {
-        return "EXECMVS P_CURR+";
+        return "1;1;EXECMVS P_CURR+";
     }
 
     @Override
     public String getStateCommand() {
-        return "STATE";
+        return "1;1;STATE";
     }
 
     @Override
     public String getCurrentPositionCommand() {
-        return "PPOSF";
+        return "1;1;PPOSF";
     }
 
     @Override
     public String getGrabCommand() {
-        return "OUT=5;1";
+        return "1;1;OUT=5;1";
     }
 
     @Override
     public String getDropCommand() {
-        return "OUT=5;0";
+        return "1;1;OUT=5;0";
     }
 
 }

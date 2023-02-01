@@ -2,6 +2,7 @@ import api.commands.MelfaBasic4CommandSet;
 import api.control.RV3SB;
 import api.control.RobotBuilder;
 import api.nav.Position;
+import yourprograms.FS465_A_Palettierung_Var;
 import yourprograms.RFSKlausur2Vereinfacht;
 import yourprograms.TestProgramForF113;
 
@@ -19,7 +20,7 @@ public class Starter {
                 .enableOperation()
                 .enableServo()
                 .exitOnError()
-                .setSpeed(20)
+                .setSpeed(10)
                 .setName("RV-3SB in F113")
                 .setCommandSet(MelfaBasic4CommandSet.getCommandSet())
                 .build();
@@ -27,7 +28,7 @@ public class Starter {
         // Alternative but boring way:
         // robot = new RobotBuilder(HOST, PORT).buildPreConfig(SAFE_POSITION);
 
-        robot.runProgram(new TestProgramForF113());
+        robot.runProgram(new FS465_A_Palettierung_Var());
     }
 
 }
