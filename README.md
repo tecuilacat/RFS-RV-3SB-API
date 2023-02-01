@@ -2,6 +2,8 @@
 Usable API for RV-3SB in room F113
 #### YOU DO NOT HAVE TO CHANGE THE JAVA CLASSES IN PACKAGES!
 
+<img src="https://i.ebayimg.com/images/g/kycAAOSwXu1ia6kg/s-l400.jpg">
+
 ## FEATURES
 - Easy init of a robot
 - Fast and easy way to move the robot to positions
