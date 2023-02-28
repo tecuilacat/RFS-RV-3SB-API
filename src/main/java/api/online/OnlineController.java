@@ -61,6 +61,8 @@ public class OnlineController {
             }
         }
         System.out.println("Online control shut down");
+        robot.drop();
+        robot.disableServo();
         System.exit(0);
     }
 
