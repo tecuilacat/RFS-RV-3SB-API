@@ -14,8 +14,8 @@ public class CommandExecutor {
 
     private static final Logger logger = new Logger(CommandExecutor.class);
 
-    private OutputStream writer;
-    private InputStream reader;
+    private final OutputStream writer;
+    private final InputStream reader;
 
     private CommandExecutor(InputStream reader, OutputStream writer) {
         this.reader = reader;
@@ -36,6 +36,7 @@ public class CommandExecutor {
         logger.command("Executing command: " + command);
         String res = "";
         try {
+            command = "1;1;" + command; // every command needs a leading 1;1; statement
             writer.write(command.getBytes(StandardCharsets.US_ASCII));
             DelayManager.defaultTimeout();
             byte[] answer = new byte[1024];

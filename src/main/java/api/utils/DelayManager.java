@@ -6,7 +6,7 @@ public class DelayManager {
 
     private static final Logger logger = new Logger(DelayManager.class);
 
-    private static final int DEFAULT_TIMEOUT = 250;
+    private static final int DEFAULT_TIMEOUT = 500;
 
     /**
      * @return Default timeout

@@ -20,6 +20,7 @@ public class RobotBuilder {
     boolean enableCommunication;
     boolean enableOperation;
     boolean enableServo;
+    boolean onlineControl;
     boolean exitOnError;
     int speed = 10;
     Position safePosition;
@@ -42,7 +43,7 @@ public class RobotBuilder {
      * Builds the connection to the robot and initializes dedicated variables / operations
      * @return Robot ready with the configured attributes
      */
-    public RV3SB build() {
+    public Robot build() {
         if (Objects.isNull(safePosition) && !disableSecureStartup) {
             logger.error("You must define a safe position for your robot!");
             return null;
@@ -52,7 +53,7 @@ public class RobotBuilder {
             return null;
         }
         try {
-            return new RV3SB(this);
+            return new Robot(this);
         } catch (Exception e) {
             logger.error("Robot could not be initialized", e);
         }
@@ -64,7 +65,7 @@ public class RobotBuilder {
      * @param safePosition Safe position of the robot (can be null if not configure [not recommended])
      * @return Robot ready to work
      */
-    public RV3SB buildPreConfig(Position safePosition) {
+    public Robot buildPreConfig(Position safePosition) {
         this.setSafePosition(safePosition);
         this.enableOperation();
         this.enableCommunication();
@@ -165,6 +166,15 @@ public class RobotBuilder {
      */
     public RobotBuilder setCommandSet(CommandSet commandSet) {
         this.commandSet = commandSet;
+        return this;
+    }
+
+    /**
+     * Enables the Live Control Mode (LCM) of the robot. Robot will be stuck in endless loop after startup for you to manually control it in the console
+     * @return Instance of RobotBuilder
+     */
+    public RobotBuilder enableOnlineControl() {
+        this.onlineControl = true;
         return this;
     }
 

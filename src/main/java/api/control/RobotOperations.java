@@ -87,6 +87,13 @@ public interface RobotOperations {
     String movToSafePosition();
 
     /**
+     * Executes a custom command you can enter as a string (try to only use than as debug tool)
+     * @param cmd Command
+     * @return Answer of the robot
+     */
+    String executeCustomCommand(String cmd);
+
+    /**
      * Sets the safe position of the robot
      * @param safePosition New safe position
      */

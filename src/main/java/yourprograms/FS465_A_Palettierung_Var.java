@@ -23,13 +23,6 @@ public class FS465_A_Palettierung_Var implements RunnableProgram {
         robot.runProgram(MAIN);
     }
 
-    private final RunnableProgram INIT = new RunnableProgram() {
-        @Override
-        public void runProgram(RobotOperations robot) {
-
-        }
-    };
-
     private final RunnableProgram MAIN = new RunnableProgram() {
         @Override
         public void runProgram(RobotOperations robot) {

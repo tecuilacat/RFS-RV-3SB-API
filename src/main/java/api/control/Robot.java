@@ -3,6 +3,7 @@ package api.control;
 import api.commands.CommandSet;
 import api.logger.Logger;
 import api.nav.Position;
+import api.online.OnlineController;
 import api.parser.Parser;
 import api.parser.PositionParser;
 import api.parser.RobotStateParser;
@@ -16,17 +17,17 @@ import java.util.Objects;
 /**
  * Mitsubishi RV-3SB robot with vacuum pump
  */
-public class RV3SB implements RobotOperations {
+public class Robot implements RobotOperations {
 
-    private static final Logger logger = new Logger(RV3SB.class);
+    private static final Logger logger = new Logger(Robot.class);
 
     private Socket socket;
     private CommandExecutor executor;
-    private String name = ""; //TODO ? | OS | 27.01.2023 | Wird später (vielleicht) noch genutzt
+    private String name = "Robot";
     private Position safePosition;
     private CommandSet commandSet;
 
-    RV3SB(RobotBuilder builder) {
+    Robot(RobotBuilder builder) {
         if (!builder.name.equals("")) {
             this.name = builder.name;
         }
@@ -53,6 +54,10 @@ public class RV3SB implements RobotOperations {
             movToSafePosition();
         }
         logger.info("Robot is now ready to operate");
+        if (builder.onlineControl) {
+            new OnlineController(this, commandSet)
+                .start();
+        }
     }
 
     @Override
@@ -156,6 +161,11 @@ public class RV3SB implements RobotOperations {
     }
 
     @Override
+    public String executeCustomCommand(String cmd) {
+        return executor.execute(cmd);
+    }
+
+    @Override
     public void disconnect() {
         logger.info("Disconnecting");
         try {
@@ -212,4 +222,7 @@ public class RV3SB implements RobotOperations {
         DelayManager.sleep(seconds);
     }
 
+    public String getName() {
+        return name;
+    }
 }
