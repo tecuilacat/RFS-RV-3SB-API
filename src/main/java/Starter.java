@@ -14,16 +14,18 @@ public class Starter {
     private static final Position SAFE_POSITION = new Position(420.0, 0.0, 300.0, 180, 0, 180);
 
     public static void main(String[] args) {
-//        Robot robot = new RobotBuilder(HOST, PORT)
-//                .setSafePosition(SAFE_POSITION)
-//                .enableCommunication()
-//                .enableOperation()
-//                .enableServo()
-//                .setSpeed(10)
-//                .setName("RV-3SB")
-//                .setCommandSet(MelfaBasic4CommandSet.getCommandSet())
-//                .enableOnlineControl() //TODO ? | OS | 25.02.2023 | Testen, ob der Schmarrn geht
-//                .build();
+        Robot robot = new RobotBuilder(HOST, PORT)
+                .setSafePosition(SAFE_POSITION)
+                .enableCommunication()
+                .enableOperation()
+                .enableServo()
+                .setSpeed(10)
+                .setName("RV-3SB")
+                .setCommandSet(MelfaBasic4CommandSet.getCommandSet())
+                .enableOnlineControl() //TODO ? | OS | 25.02.2023 | Testen, ob der Schmarrn geht
+                .build();
+
+        robot.drop();
 
         OnlineController controller = new OnlineController(null, MelfaBasic4CommandSet.getCommandSet());
         controller.start();
