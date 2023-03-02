@@ -48,7 +48,7 @@ public class OnlineController {
         boolean keepRunning = true;
         while (keepRunning) {
 //            System.out.print(robot.getName() + ">");
-            System.out.print("RV3-SB>");
+            System.out.print("RV-3SB>");
             String command = scanner.nextLine().toUpperCase();
             if (isValidCommand(command)) {
                 robot.executeCustomCommand(command);
@@ -72,7 +72,7 @@ public class OnlineController {
     }
 
     private void printHelp() {
-        System.out.println("Following commands are valid:");
+        System.out.println("Following commands are available:");
         commands.forEach(c -> System.out.println("\t- " + c));
         System.out.println("Enter commands (to quit type '" + QUIT_COMMAND + "' and press enter | if you need Help, type '" + HELP_COMMAND + "' and press enter)");
     }
