@@ -2,9 +2,8 @@ import api.commands.MelfaBasic4CommandSet;
 import api.control.Robot;
 import api.control.RobotBuilder;
 import api.nav.Position;
-import api.online.OnlineController;
-import shapedetectionprogram.ProjectProgram;
-import yourprograms.FS465_A_Palettierung_Var;
+import api.online.Terminal;
+import api.online.TerminalCommands;
 
 public class Starter {
 
@@ -15,20 +14,26 @@ public class Starter {
 
     public static void main(String[] args) {
         Robot robot = new RobotBuilder(HOST, PORT)
-                .setSafePosition(SAFE_POSITION)
-                .enableCommunication()
-                .enableOperation()
-                .enableServo()
-                .setSpeed(10)
-                .setName("RV-3SB")
+                .disableSecureStartup()
                 .setCommandSet(MelfaBasic4CommandSet.getCommandSet())
-                .enableOnlineControl() //TODO ? | OS | 25.02.2023 | Testen, ob der Schmarrn geht
+                .setName("RV-3SB")
                 .build();
+//                .setSafePosition(SAFE_POSITION)
+//                .enableCommunication()
+//                .enableOperation()
+//                .enableServo()
+//                .setSpeed(10)
+//                .setName("RV-3SB")
+//                .setCommandSet(MelfaBasic4CommandSet.getCommandSet())
+//                .enableOnlineControl() //TODO ? | OS | 25.02.2023 | Testen, ob der Schmarrn geht
+//                .build();
 
-        robot.drop();
+//        OnlineController controller = new OnlineController(null, MelfaBasic4CommandSet.getCommandSet());
+//        controller.start();
 
-        OnlineController controller = new OnlineController(null, MelfaBasic4CommandSet.getCommandSet());
-        controller.start();
+        Terminal terminal = new Terminal(robot);
+        terminal.open();
+
 
     }
 
