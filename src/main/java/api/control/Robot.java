@@ -3,7 +3,7 @@ package api.control;
 import api.commands.CommandSet;
 import api.logger.Logger;
 import api.nav.Position;
-import api.online.OnlineController;
+import api.online.Terminal;
 import api.parser.Parser;
 import api.parser.PositionParser;
 import api.parser.RobotStateParser;
@@ -54,9 +54,8 @@ public class Robot implements RobotOperations {
             movToSafePosition();
         }
         logger.info("Robot is now ready to operate");
-        if (builder.onlineControl) {
-            new OnlineController(this, commandSet)
-                .start();
+        if (builder.enableTerminal) {
+            new Terminal(this).open();
         }
     }
 

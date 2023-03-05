@@ -6,6 +6,9 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Arrays;
 import java.util.function.Function;
 
+/**
+ * Enum holds all possible Terminal or Console commands
+ */
 public enum TerminalCommands {
 
     GRAB("grab", "turns pump on", TerminalOperations::grab, ""),
@@ -14,14 +17,15 @@ public enum TerminalCommands {
     SERVO_OFF("servo off", "turns servo off", TerminalOperations::disableServo, ""),
     CURRENT_POSITION("curr", "returns current position", TerminalOperations::getCurrentPosition, ""),
     STATE("state", "gets state of robot", robotOperations -> null, ""),
+    SET_SPEED("speed", "sets speed of robot", TerminalOperations::setSpeed, "speed\\s\\d+"),
     HELP("help", "prints help", TerminalOperations::help, ""),
-    QUIT("quit", "quits the program", robotOperations -> null, ""),
-    MOVX("movx", "mov in x-direction", TerminalOperations::movX, "movx\\s-?\\d+(\\.\\d+)?"),
-    MOVY("movy", "mov in y-direction", TerminalOperations::movY, "movy\\s-?\\d+(\\.\\d+)?"),
-    MOVZ("movz", "mov in z-direction", TerminalOperations::movZ, "movz\\s-?\\d+(\\.\\d+)?"),
-    MVSX("movx", "mvs in x-direction", TerminalOperations::mvsX, "mvsx\\s-?\\d+(\\.\\d+)?"),
-    MVSY("movy", "mvs in y-direction", TerminalOperations::mvsY, "mvsy\\s-?\\d+(\\.\\d+)?"),
-    MVSZ("movz", "mvs in z-direction", TerminalOperations::mvsZ, "mvsz\\s-?\\d+(\\.\\d+)?"),
+    QUIT("quit", "quits the program", robotOperations -> null, ""), //is handled outside this class
+    MOVX("movx", "mov in x-direction", TerminalOperations::moveRobot, "movx\\s-?\\d+(\\.\\d+)?"),
+    MOVY("movy", "mov in y-direction", TerminalOperations::moveRobot, "movy\\s-?\\d+(\\.\\d+)?"),
+    MOVZ("movz", "mov in z-direction", TerminalOperations::moveRobot, "movz\\s-?\\d+(\\.\\d+)?"),
+    MVSX("mvsx", "mvs in x-direction", TerminalOperations::moveRobot, "mvsx\\s-?\\d+(\\.\\d+)?"),
+    MVSY("mvsy", "mvs in y-direction", TerminalOperations::moveRobot, "mvsy\\s-?\\d+(\\.\\d+)?"),
+    MVSZ("mvsz", "mvs in z-direction", TerminalOperations::moveRobot, "mvsz\\s-?\\d+(\\.\\d+)?"),
     ;
 
     private final String command;

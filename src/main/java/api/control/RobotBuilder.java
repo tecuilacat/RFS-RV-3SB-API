@@ -20,8 +20,8 @@ public class RobotBuilder {
     boolean enableCommunication;
     boolean enableOperation;
     boolean enableServo;
-    boolean onlineControl;
     boolean exitOnError;
+    boolean enableTerminal;
     int speed = 10;
     Position safePosition;
     String name = "robot";
@@ -170,11 +170,11 @@ public class RobotBuilder {
     }
 
     /**
-     * Enables the Live Control Mode (LCM) of the robot. Robot will be stuck in endless loop after startup for you to manually control it in the console
+     * Enables the operation of the roboter via the console
      * @return Instance of RobotBuilder
      */
-    public RobotBuilder enableOnlineControl() {
-        this.onlineControl = true;
+    public RobotBuilder enableTerminalOperation() {
+        this.enableTerminal = true;
         return this;
     }
 

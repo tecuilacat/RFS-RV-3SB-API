@@ -28,13 +28,7 @@ public class Starter {
 //                .enableOnlineControl() //TODO ? | OS | 25.02.2023 | Testen, ob der Schmarrn geht
 //                .build();
 
-//        OnlineController controller = new OnlineController(null, MelfaBasic4CommandSet.getCommandSet());
-//        controller.start();
-
-        Terminal terminal = new Terminal(robot);
-        terminal.open();
-
-
+        new Terminal(robot).open();
     }
 
 }
