@@ -89,42 +89,6 @@ public class TerminalOperations {
         return result;
     }
 
-//    public static String movX(Params params) {
-//        String command = params.getCmd();
-//        String parsedCoordinate = parseSingleCoordinate(command);
-//        if (StringUtils.isNotBlank(parsedCoordinate)) {
-////            params.getOps().executeCustomCommand("EXECMOV P_CURR+("  + parsedCoordinate + ",0.0,0.0,0.0,0.0,0.0)");
-//            return "MOV " + parsedCoordinate + " on X-Axis";
-//        } else {
-//            return "Syntax error in: " + command + " (" + params.getTerminalCommand().getPattern() + ")";
-//        }
-//    }
-//
-//    public static String movY(Params params) {
-//        String command = params.getCmd();
-//        return "EXECMOV P_CURR+(0.0,"  + parseSingleCoordinate(command) + ",0.0,0.0,0.0,0.0)";
-//    }
-//
-//    public static String movZ(Params params) {
-//        String command = params.getCmd();
-//        return "EXECMOV P_CURR+(0.0,0.0,"  + parseSingleCoordinate(command) + ",0.0,0.0,0.0)";
-//    }
-//
-//    public static String mvsX(Params params) {
-//        String command = params.getCmd();
-//        return "EXECMVS P_CURR+(" + parseSingleCoordinate(command) + ",0.0,0.0,0.0,0.0,0.0)";
-//    }
-//
-//    public static String mvsY(Params params) {
-//        String command = params.getCmd();
-//        return "EXECMVS P_CURR+(0.0,"  + parseSingleCoordinate(command) + ",0.0,0.0,0.0,0.0)";
-//    }
-//
-//    public static String mvsZ(Params params) {
-//        String command = params.getCmd();
-//        return "EXECMVS P_CURR+(0.0,0.0,"  + parseSingleCoordinate(command) + ",0.0,0.0,0.0)";
-//    }
-
     private static String parseSingleCoordinate(String cmd) {
         Pattern pattern = Pattern.compile("-?\\d+\\.\\d+");
         Matcher matcher = pattern.matcher(cmd);
