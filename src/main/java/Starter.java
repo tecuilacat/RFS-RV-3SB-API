@@ -3,7 +3,6 @@ import api.control.Robot;
 import api.control.RobotBuilder;
 import api.nav.Position;
 import api.online.Terminal;
-import api.online.TerminalCommands;
 
 public class Starter {
 
@@ -28,7 +27,8 @@ public class Starter {
 //                .enableOnlineControl() //TODO ? | OS | 25.02.2023 | Testen, ob der Schmarrn geht
 //                .build();
 
-        new Terminal(robot).open();
+        Terminal terminal = new Terminal(robot);
+        terminal.open();
     }
 
 }
