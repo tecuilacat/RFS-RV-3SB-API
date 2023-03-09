@@ -1,6 +1,7 @@
 package rfsdemo;
 
 import api.control.RobotOperations;
+import api.nav.Position;
 import api.programs.RunnableProgram;
 
 /**
@@ -9,7 +10,6 @@ import api.programs.RunnableProgram;
  * - Die anderen Werkstücke rücken nach
  * - Das Werkstück wird von der Fräse auf das Ende der Schlange gestellt
  * - Durch die Endlosschleife sieht es aus wie ein Kreislauf
- *
  */
 public class DemoProgram implements RunnableProgram {
 
@@ -97,6 +97,7 @@ public class DemoProgram implements RunnableProgram {
     private class PickupHelper implements RunnableProgram {
         @Override
         public void runProgram(RobotOperations robot) {
+            Position tmp = DemoPoints.PICKUP.getPosition().alterAbsoluteZ(200.0);
             moveObjectFromTo(robot, DemoPoints.PICKUP, DemoPoints.POS1);
             robot.movToPosition(DemoPoints.PUFFER.getPosition());
             moveObjectFromTo(robot, DemoPoints.PICKUP, DemoPoints.POS2);

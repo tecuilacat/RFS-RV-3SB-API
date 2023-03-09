@@ -16,7 +16,7 @@ public enum TerminalCommands {
     SERVO_ON("servo on", "turns servo on", TerminalOperations::enableServo, ""),
     SERVO_OFF("servo off", "turns servo off", TerminalOperations::disableServo, ""),
     CURRENT_POSITION("curr", "returns current position", TerminalOperations::getCurrentPosition, ""),
-    STATE("state", "gets state of robot", robotOperations -> null, ""),
+    STATE("state", "gets state of robot", TerminalOperations::getState, ""),
     SET_SPEED("speed", "sets speed of robot", TerminalOperations::setSpeed, "speed\\s\\d+"),
     HELP("help", "prints help", TerminalOperations::help, ""),
     QUIT("quit", "quits the program", robotOperations -> null, ""), //is handled outside this class
@@ -26,6 +26,7 @@ public enum TerminalCommands {
     MVSX("mvsx", "mvs in x-direction", TerminalOperations::moveRobot, "mvsx\\s-?\\d+(\\.\\d+)?"),
     MVSY("mvsy", "mvs in y-direction", TerminalOperations::moveRobot, "mvsy\\s-?\\d+(\\.\\d+)?"),
     MVSZ("mvsz", "mvs in z-direction", TerminalOperations::moveRobot, "mvsz\\s-?\\d+(\\.\\d+)?"),
+    MOV_SAFE("mov safe", "moves to safe position", TerminalOperations::movToSafePosition, "")
     ;
 
     private final String command;
