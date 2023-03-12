@@ -97,15 +97,24 @@ public class DemoProgram implements RunnableProgram {
     private class PickupHelper implements RunnableProgram {
         @Override
         public void runProgram(RobotOperations robot) {
+            final double heightObject = 3.0;
             Position tmp = DemoPoints.PICKUP.getPosition().alterAbsoluteZ(200.0);
             moveObjectFromTo(robot, DemoPoints.PICKUP, DemoPoints.POS1);
             robot.movToPosition(DemoPoints.PUFFER.getPosition());
+            tmp.setZ(tmp.getZ() - heightObject);
+
             moveObjectFromTo(robot, DemoPoints.PICKUP, DemoPoints.POS2);
             robot.movToPosition(DemoPoints.PUFFER.getPosition());
+            tmp.setZ(tmp.getZ() - heightObject);
+
             moveObjectFromTo(robot, DemoPoints.PICKUP, DemoPoints.POS3);
             robot.movToPosition(DemoPoints.PUFFER.getPosition());
+            tmp.setZ(tmp.getZ() - heightObject);
+
             moveObjectFromTo(robot, DemoPoints.PICKUP, DemoPoints.POS4);
             robot.movToPosition(DemoPoints.PUFFER.getPosition());
+            tmp.setZ(tmp.getZ() - heightObject);
+
             moveObjectFromTo(robot, DemoPoints.PICKUP, DemoPoints.POS5);
             robot.movToPosition(DemoPoints.PUFFER.getPosition());
         }
