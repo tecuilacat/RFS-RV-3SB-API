@@ -221,6 +221,21 @@ public class Robot implements RobotOperations {
         DelayManager.sleep(seconds);
     }
 
+    @Override
+    public void destroy() {
+        drop();
+        movToSafePosition();
+        disconnect();
+    }
+
+    @Override
+    public void notifyNcMachine() {
+        logger.info("Notifying NC-Machine");
+        executor.execute(commandSet.getNotifyNcMachine());
+        DelayManager.sleep(2);
+        executor.execute(commandSet.getResetNcMachine());
+    }
+
     public String getName() {
         return name;
     }

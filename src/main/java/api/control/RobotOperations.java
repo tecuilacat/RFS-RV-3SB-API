@@ -133,4 +133,14 @@ public interface RobotOperations {
      */
     void delay(double seconds);
 
+    /**
+     * Closes the connection to the robot, moves it to the safelocation and disables servo
+     */
+    void destroy();
+
+    /**
+     * Sends notification to the NC-machine
+     */
+    void notifyNcMachine();
+
 }

@@ -84,4 +84,13 @@ public class MelfaBasic4CommandSet implements CommandSet {
         return "OUT=5;0";
     }
 
+    @Override
+    public String getNotifyNcMachine() {
+        return "OUT=6;1";
+    }
+
+    @Override
+    public String getResetNcMachine() {
+        return "OUT=6;0";
+    }
 }

@@ -71,4 +71,14 @@ public interface CommandSet {
      */
     String getDropCommand();
 
+    /**
+     * @return Command to notify NC-Machine
+     */
+    String getNotifyNcMachine();
+
+    /**
+     * @return Command to reset notification for NC-Machine
+     */
+    String getResetNcMachine();
+
 }
