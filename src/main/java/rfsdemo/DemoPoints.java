@@ -8,7 +8,7 @@ import api.nav.Position;
 public enum DemoPoints {
 
     PUFFER(new Position(300.0, 0.0, 300.0, 180.0, 0.0, 180.0)),
-    FRAESE(new Position(0.0, 0.0, 300.0, 180.0, 0.0, 180.0)),
+    FRAESE(new Position(300.0, 0.0, 300.0, 180.0, 0.0, 180.0)),
     PICKUP(new Position(392.0, 0.0, 150.0, 180.0, 0.0, 180.0)),
     POS1(new Position(220.0, -350.0, DemoConstants.Z_INDEX_ARBEITSPLATTE, 180.0, 0.0, 180.0)),
     POS2(new Position(-200.0, -340.0, DemoConstants.Z_INDEX_ARBEITSPLATTE, 180.0, 0.0, 180.0)),

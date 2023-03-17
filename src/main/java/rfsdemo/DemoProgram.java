@@ -26,8 +26,7 @@ public class DemoProgram implements RunnableProgram {
         }
 
         robot.delay(1);
-        robot.drop();
-        robot.disableServo();
+        robot.destroy();
     }
 
     private void moveObjectFromTo(RobotOperations ops, DemoPoints from, DemoPoints to) {
