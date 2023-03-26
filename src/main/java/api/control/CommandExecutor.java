@@ -3,8 +3,10 @@ package api.control;
 import api.logger.Logger;
 import api.utils.DelayManager;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -22,8 +24,8 @@ public class CommandExecutor {
         this.writer = writer;
     }
 
-    public static CommandExecutor getFromSocket(InputStream reader, OutputStream writer) {
-        return new CommandExecutor(reader, writer);
+    public static CommandExecutor getFromSocket(Socket socket) throws IOException {
+        return new CommandExecutor(socket.getInputStream(), socket.getOutputStream());
     }
 
     /**
