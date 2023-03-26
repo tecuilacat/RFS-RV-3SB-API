@@ -1,4 +1,4 @@
-package api.online;
+package api.terminal;
 
 import api.control.Robot;
 import org.apache.commons.lang3.StringUtils;

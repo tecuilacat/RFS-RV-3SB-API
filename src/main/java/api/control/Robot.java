@@ -3,7 +3,7 @@ package api.control;
 import api.commands.CommandSet;
 import api.logger.Logger;
 import api.nav.Position;
-import api.online.Terminal;
+import api.terminal.Terminal;
 import api.parser.Parser;
 import api.parser.PositionParser;
 import api.parser.RobotStateParser;

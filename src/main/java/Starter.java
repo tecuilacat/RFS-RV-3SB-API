@@ -2,7 +2,7 @@ import api.commands.MelfaBasic4CommandSet;
 import api.control.Robot;
 import api.control.RobotBuilder;
 import api.nav.Position;
-import api.online.Terminal;
+import api.terminal.Terminal;
 
 public class Starter {
 
@@ -13,19 +13,14 @@ public class Starter {
 
     public static void main(String[] args) {
         Robot robot = new RobotBuilder(HOST, PORT)
-                .disableSecureStartup()
-                .setCommandSet(MelfaBasic4CommandSet.getCommandSet())
+                .setSafePosition(SAFE_POSITION)
+                .enableCommunication()
+                .enableOperation()
+                .enableServo()
+                .setSpeed(10)
                 .setName("RV-3SB")
+                .setCommandSet(MelfaBasic4CommandSet.getCommandSet())
                 .build();
-//                .setSafePosition(SAFE_POSITION)
-//                .enableCommunication()
-//                .enableOperation()
-//                .enableServo()
-//                .setSpeed(10)
-//                .setName("RV-3SB")
-//                .setCommandSet(MelfaBasic4CommandSet.getCommandSet())
-//                .enableOnlineControl() //TODO ? | OS | 25.02.2023 | Testen, ob der Schmarrn geht
-//                .build();
 
         Terminal terminal = new Terminal(robot);
         terminal.open();
