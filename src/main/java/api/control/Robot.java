@@ -3,7 +3,7 @@ package api.control;
 import api.commands.CommandSet;
 import api.logger.Logger;
 import api.nav.Position;
-import api.online.Terminal;
+import api.terminal.Terminal;
 import api.parser.Parser;
 import api.parser.PositionParser;
 import api.parser.RobotStateParser;
@@ -34,7 +34,7 @@ public class Robot implements RobotOperations {
         logger.info("Creating new connection for " + name);
         try {
             socket = new Socket(builder.ipAddress, builder.port);
-            executor = CommandExecutor.getFromSocket(socket.getInputStream(), socket.getOutputStream());
+            executor = CommandExecutor.getFromSocket(socket);
         } catch (Exception e) {
             logger.error("Connection could not be invoked", e);
             if (builder.exitOnError) {

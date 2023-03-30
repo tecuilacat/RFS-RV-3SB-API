@@ -45,8 +45,8 @@ In both cases the z-values of PSAFE and PCURR stay the same after those method c
 ## What will happen on startup?
 The API will initialize the robot accordingly to your definitions of the Builder class and start up in a secure way.
 
-## Running in IntelliJ in Debug-Mode
+## Running IntelliJ in Debug-Mode
 In order for you to get more information about what´s really happening behind the scenes, run debug mode in IntelliJ
 and get access to more detailed logs.
 
-**_&copy; Oliver Steck (02 | 2023)_**
+**_&copy; Oliver Steck (03 | 2023)_**
