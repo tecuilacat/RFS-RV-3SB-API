@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 
 public class Position {
 
-    private double x, y, z, a, b, c;
+    private double x, y, z, a = 180.0, b = 0.0, c = 180.0;
 
     public Position(double x, double y, double z, double a, double b, double c) {
         this.x = x;
@@ -13,6 +13,12 @@ public class Position {
         this.a = a;
         this.b = b;
         this.c = c;
+    }
+
+    public Position(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     /**
