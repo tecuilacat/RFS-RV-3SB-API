@@ -48,5 +48,3 @@ The API will initialize the robot accordingly to your definitions of the Builder
 ## Running IntelliJ in Debug-Mode
 In order for you to get more information about what´s really happening behind the scenes, run debug mode in IntelliJ
 and get access to more detailed logs.
-
-**_&copy; Oliver Steck (03 | 2023)_**
