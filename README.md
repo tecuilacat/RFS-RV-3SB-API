@@ -10,6 +10,7 @@
     <version>1.0.1</version>
 </dependency>
 ```
+---
 
 Usable API for RV-3SB in room F113
 #### YOU DO NOT HAVE TO CHANGE THE JAVA CLASSES IN PACKAGES!
