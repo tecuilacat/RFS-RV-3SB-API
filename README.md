@@ -1,4 +1,7 @@
 # Robot API
+
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.tecuilacat/robotapi/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.tecuilacat/robotapi)
+
 Usable API for RV-3SB in room F113
 #### YOU DO NOT HAVE TO CHANGE THE JAVA CLASSES IN PACKAGES!
 
