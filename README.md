@@ -1,7 +1,7 @@
 # Robot API (RFS-Projekt 2023)
 
 ![Beta Badge](https://img.shields.io/badge/status-beta-yellow)
-![MIN_SDK Badge](https://img.shields.io/badge/MIN_SDK-Java_11-blue)
+![MIN_SDK Badge](https://img.shields.io/badge/MIN_SDK-Java_17-blue)
 ![Build_Tool Badge](https://img.shields.io/badge/Build_Tool-Maven-blue)
 ![Maven_Central Badge](https://img.shields.io/badge/Maven_Central-pending-orange)
 
