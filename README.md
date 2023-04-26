@@ -2,11 +2,13 @@
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.tecuilacat/robotapi/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.tecuilacat/robotapi)
 
+> Requires Java 17!
+
 ## Maven-Dependency
 ```xml
 <dependency>
     <groupId>com.github.tecuilacat</groupId>
-    <artifactId>robot-api</artifactId>
+    <artifactId>robot-com.github.tecuilacat.robotapi.api</artifactId>
     <version>1.0.1</version>
 </dependency>
 ```
