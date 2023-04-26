@@ -1,66 +1,121 @@
-# Robot API
+# Robot API (RFS-Projekt 2023)
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.tecuilacat/robotapi/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.tecuilacat/robotapi)
 
 > Requires Java 17!
 
+---
+
+### Dies ist ein Schulprojekt und nicht für andere Betriebsarten geeignet
+#### Diese API erlaubt es eine schnelle Verbindung zum RV-3SB herzustellen und diesen möglichst einfach im Code zu benutzen
+
+---
+
+
 ## Maven-Dependency
+#### Api ist noch nicht auf Maven-Central, aber ich bin dran!
 ```xml
 <dependency>
     <groupId>com.github.tecuilacat</groupId>
-    <artifactId>robot-com.github.tecuilacat.robotapi.api</artifactId>
+    <artifactId>rfs-robot-api</artifactId>
     <version>1.0.1</version>
 </dependency>
 ```
 
+#### Man kann die API trotzdem (lokal) über Maven nutzen, indem man sich den Code zieht und dann folgendes Maven-Goal ausführt
+> mvn clean install
+
+#### Das installiert die API auf die Lokale Maschine und man kann sie mit der obigen Dependency importieren. Der Install muss nur einmal ausgeführt werden.
+
+---
+## Verbinden mit einem Roboter
+Zum Verbinden mit dem Roboter RV-3SB benötigt man 2 Informationen:
+- IP im lokalen Netzwerk
+- Port des Controllers
+
+Dann kann man einfach mit dem `RobotBuilder` eine Verbindung konfigurieren und herstellen (Beachte: Man muss auf jeden Fall eine sichere Startposition und einen Befehlssatz wählen - der Rest ist optional):
+
+```java
+import com.github.tecuilacat.robotapi.api.commands.MelfaBasic4CommandSet;
+import com.github.tecuilacat.robotapi.api.control.Robot;
+import com.github.tecuilacat.robotapi.api.control.RobotBuilder;
+import com.github.tecuilacat.robotapi.api.nav.Position;
+
+public class RobotConnector {
+
+  private static final String IP_ADDRESS = "192.168.1.223";
+  private static final int PORT = 10001;
+  private static final Position SAFE_POSITION = new Position(420.0, 0.0, 300.0);
+
+  public static void main(String[] args) {
+    Robot robot = new RobotBuilder(IP_ADDRESS, PORT)
+            .setCommandSet(MelfaBasic4CommandSet.getCommandSet())
+            .setSafePosition(SAFE_POSITION)
+            .enableCommunication()
+            .enableOperation()
+            .enableServo()
+            .setSpeed(10)
+            .build();
+  }
+}
+```
+
 ---
 
-Usable API for RV-3SB in room F113
-#### YOU DO NOT HAVE TO CHANGE THE JAVA CLASSES IN PACKAGES!
+## Die Klasse `Postition`
+Zum Ansteuern von Koordinaten gibt es eine einfache Klasse `Position`, in denen Koordinaten gespeichert sind.  
+Für den Use-Case, dass man diese Koordinaten, aber etwas höher benötigt, gibt es die Methode `alterZ(i: int)`:
+```java
+robot.movToPosition(position.alterZ(-50)); //fährt 50 mm über die Koordinate
+robot.mvsToPosition(position); //fährt zur Koordinate
+```
+`alterZ(i: int)` bezieht sich immer relativ zur Position. Will man einen absoluten Z-Wert, kann man die Methode `alterAbsoluteZ(i: int)` nutzen.
 
-<img src="https://i.ebayimg.com/images/g/kycAAOSwXu1ia6kg/s-l400.jpg">
+Will man sich Koordinaten ohne Referenz kopieren, gibt es die Methode `copy()`
 
-## FEATURES
-- Easy init of a robot
-- Fast and easy way to move the robot to positions
-- Full control of the robot
-- Easy way to write programs and nested subprograms / -routines
+---
+## Programme und Unterprogramme schreiben
+Für das Schreiben von Programmen und Unterprogrammen gibt es das Interface `RunnableProgram`, welches die jeweilige Klasse implementieren muss. Von dort aus ist es sehr einfach Routinen zu schreiben:
 
-## USAGE
-### Init the robot
-To init the Robot you must use a `RobotBuilder` which you must initialize with a host, and a port. As of 2023 the host is `192.168.1.223` and the port `10001`.  
-Init the robot with `Robot robot = new RobotBuilder(HOST, PORT). [...] .build();`  
-The [...] stands for more actions that you can / have to add to the init process like `.setSafePosition([...])` or `.setSpeed([...])`.  
-Also do not forget to define a `CommandSet` which tells the robot which commands to use. If this API does not include the fitting commands, implement a new class 
-and implement the `CommandSet` interface.
+```java
+import com.github.tecuilacat.robotapi.api.control.RobotOperations;
+import com.github.tecuilacat.robotapi.api.nav.Position;
+import com.github.tecuilacat.robotapi.api.programs.RunnableProgram;
 
-## Usage of programs
-The interface `RunnableProgram` allows you to use the `Robot` itself to run programs.  
-Implement your program in a separate class and run it by passing either the controls or the robot.
+public class Unterprogramm implements RunnableProgram {
+  @Override
+  public void runProgram(RobotOperations robot) {
+    robot.movToPosition(new Position(200.0, 200.0, 200.0));
+    robot.grab();
+    robot.movToPosition(new Position(-200.0, -200.0, 200,0));
+    robot.drop();
+    robot.movToSafePosition();
+  }
+}
+```
 
-### Usage of subprograms
-You can implement nested instances of `RunnableProgram` used for subprograms or other ISRs (which you could handle in a thread)  
-Make sure to use a fitting name for all your programs!
+Der Aufruf in der Hauptklasse erfolgt dann folgendermaßen:
+```java
+robot.runProgram(new Unterprogramm());
+```
 
-## Usage of `Position`
-NEVER assign a position another position. Always copy a variable like the following: `PNEW = POLD.copy();`  
-There are two methods that get interesting when moving the robot to a position without overwriting the position. Both will return 
-the position you want, but afterwards you can use that position the way it was:  
-- `alterZ(int value)`:  
-    - In some programs in MelfaBasic4 you will encounter lines like `MOV PSAFE, -50`
-    - The method works just like that. Take your position and alter the z-index by -50
-    - API-Command: `movToPosition(PSAFE.alterZ(-50.0), false);` (the false stands for safeTravel, which you would not need in this case)
-    - **_Tipp_**: _The method movToPosition does exactly that for you with the value -50. If you want another value, you have to either alter the method itself or do it manually as in the line above_
-- `alterAbsoluteZ(double value)`:
-    - Sometimes you want to use a certain position, but with another z-index
-    - In that case you can pass in that absolut z-value with the other parameters remaining as they were
-    - API-Command: `mvsToPosition(PCURR.absoluteZ(300.0));`
-    
-In both cases the z-values of PSAFE and PCURR stay the same after those method calls
+---
+## Ansteuern über die Konsole
+Um live über die Konsole auf den Roboter zuzugreifen, kann man die Klasse `Terminal` nutzen:
+```java
+Terminal terminal = new Terminal(robot);
+terminal.open();
+```
 
-## What will happen on startup?
-The API will initialize the robot accordingly to your definitions of the Builder class and start up in a secure way.
+Es erscheint dann in der Konsole eine Eingabefunktion. Davor sollte beim Initialisieren über den `RobotBuilder` dem Roboter einen Namen gegeben werden, mit dem man ihn ansprechen kann.  
+Um die zur Verfügung stehenden Befehle abzurufen, gibt man folgenden Command ein:
+> RV-3SB> help
 
-## Running IntelliJ in Debug-Mode
-In order for you to get more information about what´s really happening behind the scenes, run debug mode in IntelliJ
-and get access to more detailed logs.
+--- 
+## Mehr Informationen - mehr wissen
+Wenn man diese API im Debug-Modus ausführt, werden alle Befehle und ähnliche Sachen in die Konsole geloggt
+
+---
+
+## Disclaimer
+Es wird nicht gewährleistet, dass diese API den Roboter zuverlässig steuert. Der Entwickler haftet nicht für jegliche Schäden, die potenziell entstehen können. Der Nutzer ist verantwortlich für den sicheren Umgang mit dem Roboter und muss ein geschriebenes Programm vor dem normalen Einsatz testen (zum Beispiel langsam mit der Hand am Notaus ausführen).
