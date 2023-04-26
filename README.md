@@ -62,7 +62,7 @@ public class RobotConnector {
 
 ---
 
-## Die Klasse `Postition`
+## Die Klasse `Position`
 Zum Ansteuern von Koordinaten gibt es eine einfache Klasse `Position`, in denen Koordinaten gespeichert sind.  
 Für den Use-Case, dass man diese Koordinaten, aber etwas höher benötigt, gibt es die Methode `alterZ(i: int)`:
 ```java
