@@ -1,5 +1,6 @@
 package com.github.tecuilacat.robotapi.api.control;
 
+import com.github.tecuilacat.robotapi.api.FancyText;
 import com.github.tecuilacat.robotapi.api.commands.CommandSet;
 import com.github.tecuilacat.robotapi.api.commands.MelfaBasic4CommandSet;
 import com.github.tecuilacat.robotapi.api.logger.Logger;
@@ -52,6 +53,7 @@ public class RobotBuilder {
             logger.error("You must define a command set for the robot");
             return null;
         }
+        FancyText.printLogo();
         try {
             return new Robot(this);
         } catch (Exception e) {
