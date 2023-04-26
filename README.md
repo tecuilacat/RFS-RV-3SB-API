@@ -1,9 +1,8 @@
 # Robot API (RFS-Projekt 2023)
 
-![Beta Badge](https://img.shields.io/badge/status-beta-yellow)
-![MIN_SDK Badge](https://img.shields.io/badge/MIN_SDK-Java_17-blue)
-![Build_Tool Badge](https://img.shields.io/badge/Build_Tool-Maven-blue)
-![Maven_Central Badge](https://img.shields.io/badge/Maven_Central-pending-orange)
+![Version Badge](https://img.shields.io/badge/version-1.0.1-blue)
+![MIN_SDK Badge](https://img.shields.io/badge/MIN_SDK-Java_17-red)
+![Maven_Central Badge](https://img.shields.io/badge/maven_central-pending-brown)
 
 [//]: # ([![Maven Central]&#40;https://maven-badges.herokuapp.com/maven-central/com.github.tecuilacat/RFS-RV-3SB-API/badge.svg&#41;]&#40;https://maven-badges.herokuapp.com/maven-central/com.github.tecuilacat/RFS-RV-3SB-API&#41;)
 
