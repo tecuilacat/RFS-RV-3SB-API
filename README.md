@@ -17,7 +17,7 @@
 ```xml
 <dependency>
     <groupId>com.github.tecuilacat</groupId>
-    <artifactId>rfs-robot-api</artifactId>
+    <artifactId>rfs-rv3sb-api</artifactId>
     <version>1.0.1</version>
 </dependency>
 ```
