@@ -1,6 +1,6 @@
 # Robot API (RFS-Projekt 2023)
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.tecuilacat/robotapi/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.tecuilacat/robotapi)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.tecuilacat/RFS-RV-3SB-API/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.tecuilacat/RFS-RV-3SB-API)
 
 > Requires Java 17!
 
