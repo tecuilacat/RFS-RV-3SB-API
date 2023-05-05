@@ -1,4 +1,4 @@
-# Robot API (RFS-Projekt 2023)
+# Roboter API (RFS-Projekt 2023)
 
 ![Version Badge](https://img.shields.io/badge/version-1.0.1-blue)
 ![MIN_SDK Badge](https://img.shields.io/badge/MIN_SDK-Java_17-red)
