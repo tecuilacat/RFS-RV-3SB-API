@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * Sends and executes commands
  */
-public class CommandExecutor {
+public final class CommandExecutor {
 
     private static final Logger logger = new Logger(CommandExecutor.class);
 

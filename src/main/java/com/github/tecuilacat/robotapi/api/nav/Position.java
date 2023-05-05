@@ -2,7 +2,7 @@ package com.github.tecuilacat.robotapi.api.nav;
 
 import java.text.DecimalFormat;
 
-public class Position {
+public final class Position {
 
     private double x, y, z, a = 180.0, b = 0.0, c = 180.0;
 

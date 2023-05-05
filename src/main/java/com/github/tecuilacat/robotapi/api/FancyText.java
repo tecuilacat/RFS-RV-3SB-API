@@ -1,6 +1,6 @@
 package com.github.tecuilacat.robotapi.api;
 
-public class FancyText {
+public final class FancyText {
 
     public static void printLogo() {
         System.out.println(TEXT);

@@ -12,7 +12,7 @@ import java.util.Objects;
  * Creates a robot and starts it up in a secure way
  * Builder ensures the correct procedure of starting up (first communication, then operation, then servo, then speed, then the rest)
  */
-public class RobotBuilder {
+public final class RobotBuilder {
 
     private static final Logger logger = new Logger(RobotBuilder.class);
 

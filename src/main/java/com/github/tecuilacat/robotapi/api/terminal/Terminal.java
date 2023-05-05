@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * Class allows user to operate the roboter in the commandLine of either a console or inside the IDE
  */
-public class Terminal {
+public final class Terminal {
 
     private final Robot robot;
 
@@ -26,7 +26,7 @@ public class Terminal {
             String command = scanner.nextLine();
             if (command.equalsIgnoreCase(TerminalCommands.QUIT.getCommand())) {
                 keepRunning = false;
-            } else if (command.isBlank()) {
+            } else if (!command.isBlank()) {
                 try {
                     TerminalCommands cmd = TerminalCommands.getCommand(command);
                     String res = cmd.execute(robot, command);

@@ -5,7 +5,7 @@ import com.github.tecuilacat.robotapi.api.nav.Position;
 /**
  * Parses a string (make sure only the needed parts are in that string divided by ';')
  */
-public class PositionParser implements Parser<String, Position> {
+public final class PositionParser implements Parser<String, Position> {
     
     @Override
     public Position parse(String positionAsString) {

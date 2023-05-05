@@ -6,7 +6,7 @@ import com.github.tecuilacat.robotapi.api.nav.Position;
 import com.github.tecuilacat.robotapi.api.programs.RunnableProgram;
 import com.github.tecuilacat.robotapi.api.utils.DelayManager;
 
-public class TestProgramForF113 implements RunnableProgram {
+public final class TestProgramForF113 implements RunnableProgram {
 
     private static final Logger logger = new Logger(TestProgramForF113.class);
 

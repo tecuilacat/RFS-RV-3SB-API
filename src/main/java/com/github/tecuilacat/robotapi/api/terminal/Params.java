@@ -2,7 +2,7 @@ package com.github.tecuilacat.robotapi.api.terminal;
 
 import com.github.tecuilacat.robotapi.api.control.RobotOperations;
 
-public class Params {
+public final class Params {
 
     private final RobotOperations ops;
     private final String cmd;

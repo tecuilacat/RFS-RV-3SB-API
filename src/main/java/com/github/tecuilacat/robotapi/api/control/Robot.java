@@ -17,7 +17,7 @@ import java.util.Objects;
 /**
  * Mitsubishi RV-3SB robot with vacuum pump
  */
-public class Robot implements RobotOperations {
+public final class Robot implements RobotOperations {
 
     private static final Logger logger = new Logger(Robot.class);
 

@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TerminalOperations {
+public final class TerminalOperations {
 
     public static String enableServo(Params params) {
         return params.getOps().enableServo();

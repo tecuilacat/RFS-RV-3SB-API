@@ -3,7 +3,7 @@ package com.github.tecuilacat.robotapi.api.parser;
 import com.github.tecuilacat.robotapi.api.logger.Logger;
 import com.github.tecuilacat.robotapi.api.state.RobotState;
 
-public class RobotStateParser implements Parser<String, RobotState> {
+public final class RobotStateParser implements Parser<String, RobotState> {
 
     private static final Logger logger = new Logger(RobotStateParser.class);
 

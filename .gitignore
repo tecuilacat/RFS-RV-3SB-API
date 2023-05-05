@@ -36,3 +36,4 @@ build/
 
 ### VS Code ###
 .vscode/
+/src/main/java/com/github/tecuilacat/robotapi/melfa_basic_4_parser/

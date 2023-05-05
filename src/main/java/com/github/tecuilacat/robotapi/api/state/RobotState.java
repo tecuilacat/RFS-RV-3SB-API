@@ -1,6 +1,6 @@
 package com.github.tecuilacat.robotapi.api.state;
 
-public class RobotState {
+public final class RobotState {
 
     private int speed;
     private boolean isMoving;

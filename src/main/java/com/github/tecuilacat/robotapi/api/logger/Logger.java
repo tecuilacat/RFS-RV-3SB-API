@@ -2,7 +2,7 @@ package com.github.tecuilacat.robotapi.api.logger;
 
 import java.time.LocalDateTime;
 
-public class Logger {
+public final class Logger {
 
     private static boolean ONLY_SHOW_COMMANDS;
     private static final boolean IS_IN_DEBUG_MODE = java.lang.management.ManagementFactory.getRuntimeMXBean()
