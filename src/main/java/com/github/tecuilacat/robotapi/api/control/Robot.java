@@ -236,11 +236,6 @@ public final class Robot implements RobotOperations {
         executor.execute(commandSet.getResetNcMachine());
     }
 
-    @Override
-    public void versionTesting() {
-        logger.info("Does nothing. I am only testing the versioning");
-    }
-
     public String getName() {
         return name;
     }

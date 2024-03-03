@@ -143,6 +143,4 @@ public interface RobotOperations {
      */
     void notifyNcMachine();
 
-    void versionTesting();
-
 }
