@@ -22,7 +22,6 @@ public class Starter {
                 .setSpeed(10)
                 .setName("RV-3SB")
                 .setCommandSet(MelfaBasic4CommandSet.getCommandSet())
-                .enableTerminalOperation()
                 .build();
 
         Terminal terminal = new Terminal(robot);
