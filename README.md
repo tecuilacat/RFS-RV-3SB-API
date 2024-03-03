@@ -26,7 +26,11 @@
 
 oder gradle:
 ```groovy
-implementation 'com.github.TecuilaCat:RFS-RV-3SB-API:1.0.1'
+maven { url 'https://jitpack.io' }
+
+dependencies {
+    implementation 'com.github.TecuilaCat:RFS-RV-3SB-API:1.0.1'
+}
 ```
 
 ---
