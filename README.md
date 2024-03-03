@@ -56,6 +56,7 @@ public class RobotConnector {
             .setCommandSet(MelfaBasic4CommandSet.getCommandSet())
             .setSafePosition(SAFE_POSITION)
             .enableCommunication()
+            .setAbsoluteBottom(130.0) // or: .ignoreAbsoluteBottomValidation()
             .enableOperation()
             .enableServo()
             .setSpeed(10)
