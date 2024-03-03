@@ -27,10 +27,19 @@ public final class Robot implements RobotOperations {
     private Position safePosition;
     private CommandSet commandSet;
 
+    /**
+     * Describes the z-value the robot must always be above in order to not crash into or through the glass surface
+     */
+    private final double minZvalue;
+
+    private final boolean isMinZvalueValidated;
+
     Robot(RobotBuilder builder) {
         if (!builder.name.equals("")) {
             this.name = builder.name;
         }
+        this.minZvalue = builder.minZvalue;
+        this.isMinZvalueValidated = builder.isMinZvalueValidated;
         logger.info("Creating new connection for " + name);
         try {
             socket = new Socket(builder.ipAddress, builder.port);
@@ -114,31 +123,55 @@ public final class Robot implements RobotOperations {
 
     @Override
     public String movToPositionWithSafeTravel(Position position) {
-        logger.debug("Moving to position " + position + " via MOV");
-        logger.robotAction("Moving");
-        String res = executor.execute(commandSet.getMOVCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position.alterZ(-50))); //MOV Psomething -50
-        waitForMovementToBeCompleted();
-        res += executor.execute(commandSet.getMVSCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position)); //MOV Psomething
-        waitForMovementToBeCompleted();
-        return res;
+        if (validatePosition(position)) {
+            logger.debug("Moving to position " + position + " via MOV");
+            logger.robotAction("Moving");
+            String res = executor.execute(commandSet.getMOVCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position.alterZ(-50))); //MOV Psomething -50
+            waitForMovementToBeCompleted();
+            res += executor.execute(commandSet.getMVSCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position)); //MOV Psomething
+            waitForMovementToBeCompleted();
+            return res;
+        } else {
+            return "Aborted moving";
+        }
     }
 
     @Override
     public String movToPosition(Position position) {
-        logger.debug("Moving to position " + position + " via MOV");
-        logger.robotAction("Moving");
-        String res = executor.execute(commandSet.getMOVCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position));
-        waitForMovementToBeCompleted();
-        return res;
+        if (validatePosition(position)) {
+            logger.debug("Moving to position " + position + " via MOV");
+            logger.robotAction("Moving");
+            String res = executor.execute(commandSet.getMOVCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position));
+            waitForMovementToBeCompleted();
+            return res;
+        } else {
+            return "Aborted moving";
+        }
     }
 
     @Override
     public String mvsToPosition(Position position) {
         logger.debug("Moving to position " + position + " via MVS");
-        logger.robotAction("Moving");
-        String res = executor.execute(commandSet.getMVSCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position)); //MVS Psomething
-        waitForMovementToBeCompleted();
-        return res;
+        if (validatePosition(position)) {
+            logger.robotAction("Moving");
+            String res = executor.execute(commandSet.getMVSCommand() + Position.getDifferenceToPosition(getCurrentPosition(), position)); //MVS Psomething
+            waitForMovementToBeCompleted();
+            return res;
+        } else {
+            return "Aborted moving";
+        }
+    }
+
+    /**
+     * Validates the position for security reasons (ensures that the robot arm does not crash into the glass surface
+     */
+    private boolean validatePosition(Position position) {
+        boolean valid = true;
+        if (position.getZ() < this.minZvalue && isMinZvalueValidated) {
+            valid = false;
+            logger.error("Position has a min z-value of " + position.getZ() + ", but the defined minimum is " + this.minZvalue);
+        }
+        return valid;
     }
 
     @Override

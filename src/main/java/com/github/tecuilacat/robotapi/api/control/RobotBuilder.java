@@ -28,6 +28,10 @@ public final class RobotBuilder {
     String name = "robot";
     CommandSet commandSet;
 
+    double minZvalue = 0.0;
+
+    boolean isMinZvalueValidated = true;
+
     private boolean disableSecureStartup = false;
 
     /**
@@ -50,7 +54,11 @@ public final class RobotBuilder {
             return null;
         }
         if (Objects.isNull(commandSet)) {
-            logger.error("You must define a command set for the robot");
+            logger.error("You must define a command set for the robot.");
+            return null;
+        }
+        if (minZvalue == 0.0 && isMinZvalueValidated) {
+            logger.error("You must set the z-index of the glass surface for security reasons. Make sure to measure that value and maybe provide some tolerance just in case.");
             return null;
         }
         FancyText.printLogo();
@@ -177,6 +185,26 @@ public final class RobotBuilder {
      */
     public RobotBuilder enableTerminalOperation() {
         this.enableTerminal = true;
+        return this;
+    }
+
+    /**
+     * Must be set<br>
+     * Sets the z-value of the surface. That will ensure that the robot arm does not crash into or through the glass surface
+     * @param minZvalue z-value of the glass surface (or better a millimeter above)
+     * @return Instance of RobotBuilder
+     */
+    public RobotBuilder setAbsoluteBottom(double minZvalue) {
+        this.minZvalue = minZvalue;
+        return this;
+    }
+
+    /**
+     * NOT RECOMMENDED <br>
+     * Disables the security feature that ensures that every position is checked on whether the robot would crash into the glass surface
+     */
+    public RobotBuilder ignoreAbsoluteBottomValidation() {
+        this.isMinZvalueValidated = false;
         return this;
     }
 

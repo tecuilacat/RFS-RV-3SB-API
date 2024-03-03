@@ -13,11 +13,12 @@
 
 
 ## Maven-Dependency / Gradle-Dependency
+(Neuste Version steht oben)
 ```xml
 <dependency>
     <groupId>com.github.TecuilaCat</groupId>
     <artifactId>RFS-RV-3SB-API</artifactId>
-    <version>1.0.1</version>
+    <version>[latestPatch]</version>
 </dependency>
 ```
 
@@ -26,7 +27,7 @@ oder gradle:
 maven { url 'https://jitpack.io' }
 
 dependencies {
-    implementation 'com.github.TecuilaCat:RFS-RV-3SB-API:1.0.1'
+    implementation 'com.github.TecuilaCat:RFS-RV-3SB-API:[latestPatch]'
 }
 ```
 
