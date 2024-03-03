@@ -18,16 +18,16 @@
 #### Api ist noch nicht auf Maven-Central, aber ich bin dran!
 ```xml
 <dependency>
-    <groupId>com.github.tecuilacat</groupId>
-    <artifactId>rfs-rv3sb-api</artifactId>
+    <groupId>com.github.TecuilaCat</groupId>
+    <artifactId>RFS-RV-3SB-API</artifactId>
     <version>1.0.1</version>
 </dependency>
 ```
 
-#### Man kann die API trotzdem (lokal) über Maven nutzen, indem man sich den Code zieht und dann folgendes Maven-Goal ausführt
-> mvn clean install
-
-#### Das installiert die API auf die Lokale Maschine und man kann sie mit der obigen Dependency importieren. Der Install muss nur einmal ausgeführt werden.
+oder gradle:
+```groovy
+implementation 'com.github.TecuilaCat:RFS-RV-3SB-API:1.0.1'
+```
 
 ---
 ## Verbinden mit einem Roboter
