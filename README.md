@@ -3,6 +3,7 @@
 ![Version Badge](https://img.shields.io/badge/version-1.0.1-blue)
 ![MIN_SDK Badge](https://img.shields.io/badge/MIN_SDK-Java_17-red)
 ![Maven_Central Badge](https://img.shields.io/badge/maven_central-pending-brown)
+![Latest Release](https://img.shields.io/github/v/release/TecuilaCat/RFS-RV-3SB-API?color=blue&label=latest%20release)
 
 [//]: # ([![Maven Central]&#40;https://maven-badges.herokuapp.com/maven-central/com.github.tecuilacat/RFS-RV-3SB-API/badge.svg&#41;]&#40;https://maven-badges.herokuapp.com/maven-central/com.github.tecuilacat/RFS-RV-3SB-API&#41;)
 
